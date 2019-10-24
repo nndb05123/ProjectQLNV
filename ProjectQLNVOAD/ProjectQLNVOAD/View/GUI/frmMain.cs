@@ -30,7 +30,7 @@ namespace ProjectQLNVOAD
         }
 
         #region frmConnection
-
+        //Use in frmLogin
         frmConnection m_Connection = null;
 
         //frmLogin m_FrmLogin = null;
@@ -62,5 +62,57 @@ namespace ProjectQLNVOAD
         }
 
         #endregion
+
+        //public static string QuyenHan { get; set; }
+
+        #region Function
+        private bool ExistForm(Form form)
+        {
+            foreach (var child in MdiChildren)
+            {
+                if (child.Name == form.Name)
+                {
+                    child.Activate();
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
+
+
+        #region ClickQLNV
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                frmNhanVien f = new frmNhanVien();
+                if (ExistForm(f)) return;
+                f.MdiParent = this;
+                f.Show();
+            }
+            catch { }
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                frmThanNhan f = new frmThanNhan();
+                if (ExistForm(f)) return;
+                f.MdiParent = this;
+                f.Show();
+            }
+            catch { }
+        }
+        #endregion
+
+        //private void btnSignOut_ItemClick(object sender, ItemClickEventArgs e)
+        //{
+        //    Form f = new frmLogin();
+        //    f.Show();
+        //    this.Hide();
+        //}
     }
 }
