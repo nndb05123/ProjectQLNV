@@ -32,9 +32,10 @@
             // 
             // frmThanNhan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1821, 1076);
+            this.ClientSize = new System.Drawing.Size(775, 238);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "frmThanNhan";
             this.Text = "frmThanNhan";
             this.ResumeLayout(false);

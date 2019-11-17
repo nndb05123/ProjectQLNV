@@ -17,5 +17,11 @@ namespace ProjectQLNVOAD.View.GUI
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var myForm = new frmThanNhan();
+            myForm.Show();
+        }
     }
 }
