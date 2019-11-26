@@ -87,7 +87,7 @@ namespace ProjectQLNVOAD
         {
             try
             {
-                frmNhanVien f = new frmNhanVien();
+                frmDonVi f = new frmDonVi();
                 if (ExistForm(f)) return;
                 f.MdiParent = this;
                 f.Show();
@@ -99,12 +99,38 @@ namespace ProjectQLNVOAD
         {
             try
             {
-                frmThanNhan f = new frmThanNhan();
+                frmNhanVien f = new frmNhanVien();
                 if (ExistForm(f)) return;
                 f.MdiParent = this;
                 f.Show();
             }
             catch { }
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                frmChucVuDonVi f = new frmChucVuDonVi();
+                if (ExistForm(f)) return;
+                f.MdiParent = this;
+                f.Show();
+            }
+            catch { }
+
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                frmDoanThe f = new frmDoanThe();
+                if (ExistForm(f)) return;
+                f.MdiParent = this;
+                f.Show();
+            }
+            catch { }
+
         }
         #endregion
 
