@@ -17,5 +17,10 @@ namespace ProjectQLNVOAD.View.GUI
         {
             InitializeComponent();
         }
+
+        private void dataGridViewX1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
