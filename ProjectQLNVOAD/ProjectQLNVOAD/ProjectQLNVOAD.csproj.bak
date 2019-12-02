@@ -34,15 +34,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.36, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.BonusSkins.v19.2" />
-    <Reference Include="DevExpress.Data.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Images.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v19.2" />
-    <Reference Include="DevExpress.Sparkline.v19.2.Core" />
-    <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.BonusSkins.v19.1" />
+    <Reference Include="DevExpress.Data.v19.1, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v19.1, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v19.1.Core, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v19.1, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v19.1" />
+    <Reference Include="DevExpress.Sparkline.v19.1.Core" />
+    <Reference Include="DevExpress.XtraEditors.v19.1, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v19.1, Version=19.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -58,35 +58,11 @@
   <ItemGroup>
     <Compile Include="APIManager\ConnectionSQL.cs" />
     <Compile Include="Extension\AppSettingBUS.cs" />
-    <Compile Include="View\GUI\frmBoSungDoanThe.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\GUI\frmBoSungDoanThe.Designer.cs">
-      <DependentUpon>frmBoSungDoanThe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\GUI\frmChucVuDonVi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\GUI\frmChucVuDonVi.Designer.cs">
-      <DependentUpon>frmChucVuDonVi.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\GUI\frmConnection.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\GUI\frmConnection.Designer.cs">
       <DependentUpon>frmConnection.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\GUI\frmDoanThe.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\GUI\frmDoanThe.Designer.cs">
-      <DependentUpon>frmDoanThe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\GUI\frmDonVi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\GUI\frmDonVi.Designer.cs">
-      <DependentUpon>frmDonVi.cs</DependentUpon>
     </Compile>
     <Compile Include="View\GUI\frmMain.cs">
       <SubType>Form</SubType>
@@ -102,26 +78,20 @@
     <Compile Include="View\GUI\frmNhanVien.Designer.cs">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\GUI\frmThemNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GUI\frmThemNhanVien.Designer.cs">
+      <DependentUpon>frmThemNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\GUI\frmThanNhan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\GUI\frmThanNhan.Designer.cs">
       <DependentUpon>frmThanNhan.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\GUI\frmBoSungDoanThe.resx">
-      <DependentUpon>frmBoSungDoanThe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\GUI\frmChucVuDonVi.resx">
-      <DependentUpon>frmChucVuDonVi.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\GUI\frmConnection.resx">
       <DependentUpon>frmConnection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\GUI\frmDoanThe.resx">
-      <DependentUpon>frmDoanThe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\GUI\frmDonVi.resx">
-      <DependentUpon>frmDonVi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\GUI\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -138,6 +108,12 @@
     </Compile>
     <EmbeddedResource Include="View\GUI\frmNhanVien.resx">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GUI\frmThemNhanVien.resx">
+      <DependentUpon>frmThemNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GUI\frmThanNhan.resx">
+      <DependentUpon>frmThanNhan.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -37,5 +37,55 @@ namespace ProjectQLNVOAD.View.GUI
         {
 
         }
+
+        private void tb_TenNhanVien_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void date_NgaySinh_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_CMND_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_DiaChi_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tb_DanToc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void date_NgayVaoLam_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbb_DonVi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_LamLai_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbb_ChucVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CapNhatDuLieu_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

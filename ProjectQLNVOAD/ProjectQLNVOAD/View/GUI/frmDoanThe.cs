@@ -17,7 +17,50 @@ namespace ProjectQLNVOAD.View.GUI
         {
             InitializeComponent();
         }
-    
-      
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelX1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxX1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CapNhatDuLieu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_SuaThongTin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Reload_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Xuat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Thoat_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
