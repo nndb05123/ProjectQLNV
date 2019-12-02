@@ -11,8 +11,8 @@ Thong so co ban:
 -->
 <config>
   <costatus>true</costatus>
-  <servname>DESKTOP-F6V69VL\BAODUYSQL</servname>
+  <servname>DESKTOP-LBENAO8</servname>
   <username />
   <password />
-  <database>DichVuVienThong</database>
+  <database>QuanLyNhanVien_Luong</database>
 </config>
