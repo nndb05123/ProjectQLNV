@@ -233,7 +233,10 @@
     <Compile Include="BaoCao\ThongKeSLLaoDong.Designer.cs">
       <DependentUpon>ThongKeSLLaoDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\BUS\NhanVienBUS.cs" />
     <Compile Include="Core\Core.cs" />
+    <Compile Include="Core\DAO\NhanVienDAO.cs" />
+    <Compile Include="Core\DTO\NhanVienDTO.cs" />
     <Compile Include="Core\Security.cs" />
     <Compile Include="DanhMuc\frmChungChiTinHoc.cs">
       <SubType>Form</SubType>
