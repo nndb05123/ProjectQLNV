@@ -97,7 +97,7 @@ namespace ProjectQLNVOAD.APIManager
         public static string Lenh = ConSTR();/*Properties.Settings.Default.QuanLyThuVien;*/
         #endregion
         #region ConnecTionSQL
-        public static DataTable TaoBang(string sql)
+        public static DataTable TaoBang(string sql) //DÙng cho DataTable
         {
             conn = new SqlConnection(Lenh);
             conn.Open();
@@ -126,6 +126,7 @@ namespace ProjectQLNVOAD.APIManager
         }
 
         public static int Identity(int ID)
+        //Lấy số id cuối cùng của bảng 
         {
             string query = "select IDDocGia from TheDocGia";
             conn = new SqlConnection(Lenh);
@@ -144,6 +145,8 @@ namespace ProjectQLNVOAD.APIManager
 
         public static int Identitytable(int ID,string a , string b)
         {
+            //a : Column
+            //b : Table
             string query = "select "+ a + " from " + b + " ";
             conn = new SqlConnection(Lenh);
             if (conn.State == ConnectionState.Closed)
