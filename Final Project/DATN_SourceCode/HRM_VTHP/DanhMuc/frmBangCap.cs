@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HRM_VTHP.Core.BUS;
 
 namespace HRM_VTHP.DanhMuc
 {
@@ -20,8 +21,7 @@ namespace HRM_VTHP.DanhMuc
         int BangCapID = 0;
         void Load_DL()
         {
-            string sql = "Select * from BangCap";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = BangCapBUS.Instance.LoadAllBangCap();
             grdBangCap.DataSource = dt;
         }
         void Reset()

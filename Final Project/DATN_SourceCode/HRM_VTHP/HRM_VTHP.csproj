@@ -233,9 +233,12 @@
     <Compile Include="BaoCao\ThongKeSLLaoDong.Designer.cs">
       <DependentUpon>ThongKeSLLaoDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\BUS\BangCapBUS.cs" />
     <Compile Include="Core\BUS\NhanVienBUS.cs" />
     <Compile Include="Core\Core.cs" />
+    <Compile Include="Core\DAO\BangCapDAO.cs" />
     <Compile Include="Core\DAO\NhanVienDAO.cs" />
+    <Compile Include="Core\DTO\BangCapDTO.cs" />
     <Compile Include="Core\DTO\NhanVienDTO.cs" />
     <Compile Include="Core\Security.cs" />
     <Compile Include="DanhMuc\frmChungChiTinHoc.cs">
@@ -440,6 +443,7 @@
     </Compile>
     <EmbeddedResource Include="BaoCao\BaoCaoBangCapChungChi.resx">
       <DependentUpon>BaoCaoBangCapChungChi.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoChamCong.resx">
       <DependentUpon>BaoCaoChamCong.cs</DependentUpon>
