@@ -21,7 +21,7 @@ namespace HRM_VTHP.BaoCao
             try
             {
                 BaoCaoChamCong reports = new BaoCaoChamCong(cmbTenBoPhan.Text, cmbTenBoPhan.SelectedValue.ToString(), dtpThang.Value.ToString("MM/yyyy"));
-                reports.Parameters["BoPhanID"].Value = cmbTenBoPhan.SelectedValue.ToString();
+                reports.Parameters["BoPhanID"].Value = int.Parse(cmbTenBoPhan.SelectedValue.ToString());
                 reports.Parameters["Thang"].Value = dtpThang.Value.ToString("yyyyMM");
                 //reports.Parameters["Nam"].Value = cmbNam.SelectedValue.ToString();
                 documentViewer1.DocumentSource = reports;
