@@ -107,6 +107,12 @@
     <Compile Include="BaoCao\BaoCaoChiTietTamUng.Designer.cs">
       <DependentUpon>BaoCaoChiTietTamUng.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BaoCaoHopDongHetHan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BaoCaoHopDongHetHan.Designer.cs">
+      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BaoCaoHoSoMotNV.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -124,12 +130,6 @@
     </Compile>
     <Compile Include="BaoCao\BaoCaoKhenThuongKyLuat.Designer.cs">
       <DependentUpon>BaoCaoKhenThuongKyLuat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BaoCaoHopDongHetHan.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BaoCaoHopDongHetHan.Designer.cs">
-      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BaoCaoLuongHangThang.cs">
       <SubType>Component</SubType>
@@ -447,6 +447,9 @@
     <EmbeddedResource Include="BaoCao\BaoCaoChiTietTamUng.resx">
       <DependentUpon>BaoCaoChiTietTamUng.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BaoCaoHopDongHetHan.resx">
+      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoHoSoMotNV.resx">
       <DependentUpon>BaoCaoHoSoMotNV.cs</DependentUpon>
     </EmbeddedResource>
@@ -455,9 +458,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoKhenThuongKyLuat.resx">
       <DependentUpon>BaoCaoKhenThuongKyLuat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BaoCaoHopDongHetHan.resx">
-      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoLuongHangThang.resx">
       <DependentUpon>BaoCaoLuongHangThang.cs</DependentUpon>
