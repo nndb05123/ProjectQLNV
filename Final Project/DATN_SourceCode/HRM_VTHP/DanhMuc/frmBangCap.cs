@@ -22,8 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int BangCapID = 0;
         void Load_DL()
         {
-            DataTable dt = BangCapBUS.Instance.LoadAllBangCap();
-            grdBangCap.DataSource = dt;
+            grdBangCap.DataSource = BangCapBUS.Instance.LoadAllBangCap();
         }
         void Reset()
         {

@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HRM_VTHP.Core;
-
+using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
 
 namespace HRM_VTHP.DanhMuc
 {
@@ -38,9 +39,7 @@ namespace HRM_VTHP.DanhMuc
         }
         void Load_DuLieu()
         {
-            string sql = "Select * from NgoaiNgu";
-            DataTable dt = Core.Core.GetData(sql);
-            grdNgoaiNgu.DataSource = dt;
+            grdNgoaiNgu.DataSource = NgoaiNguBUS.Instance.LoadAllNgoaiNgu();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -67,6 +66,9 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapnhat_Click(object sender, EventArgs e)
         {
+            NgoaiNguDTO ngoaiNguDTO = new NgoaiNguDTO();
+            ngoaiNguDTO.TenCCNN = txtNgoaiNgu.Text.Trim();
+            ngoaiNguDTO.NgoaiNguID = NgoaiNguID;
             if (kt == 1)
             {
                 if(txtNgoaiNgu.Text == "")
@@ -75,8 +77,9 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into NgoaiNgu(TenCCNN) values (N'" + txtNgoaiNgu.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+
+
+                    if (NgoaiNguBUS.Instance.ThemNgoaiNgu(ngoaiNguDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -89,9 +92,7 @@ namespace HRM_VTHP.DanhMuc
             else
             {
                 //Update du lieu
-                string sql = "";
-                sql = "Update NgoaiNgu set TenCCNN = N'" + txtNgoaiNgu.Text + "' where NgoaiNguID = '" + NgoaiNguID + "'";
-                Core.Core.RunSql(sql);
+                NgoaiNguBUS.Instance.UpdateNgoaiNgu(ngoaiNguDTO);
                 Load_DuLieu();
             }
             Reset();
@@ -101,16 +102,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from HoSoNhanVien where NgoaiNguID = '" + NgoaiNguID + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            NgoaiNguDTO ngoaiNguDTO = new NgoaiNguDTO();
+            ngoaiNguDTO.NgoaiNguID = NgoaiNguID;
+            DataTable dt = NgoaiNguBUS.Instance.LoadNgoaiNguFormHoSoNhanVien(ngoaiNguDTO);
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Hồ sơ nhân viên");
             }
             else
             {
-                sql = "Delete NgoaiNgu where NgoaiNguID = '" + NgoaiNguID + "'";
-                Core.Core.RunSql(sql);
+                NgoaiNguBUS.Instance.DeleteNgoaiNgu(ngoaiNguDTO);
                 Load_DuLieu();
                 Reset();
             }
