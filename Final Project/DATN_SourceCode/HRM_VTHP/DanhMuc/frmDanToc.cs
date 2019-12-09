@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HRM_VTHP.Core;
+using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
 
 namespace HRM_VTHP.DanhMuc
 {
@@ -38,9 +40,8 @@ namespace HRM_VTHP.DanhMuc
         }
         void Load_DuLieu()
         {
-            string sql = "Select * from DanToc";
-            DataTable dt = Core.Core.GetData(sql);
-            grdDanToc.DataSource = dt;
+
+            grdDanToc.DataSource = DanTocBUS.Instance.LoadAllDanToc();
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -66,6 +67,9 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            DanTocDTO danTocDTO = new DanTocDTO();
+            danTocDTO.DanTocID = DanTocID;
+            danTocDTO.TenDanToc = txtDanToc.Text.Trim();
             if(kt == 1)
             {
                 if (txtDanToc.Text == "")
@@ -74,9 +78,8 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "";
-                    sql = "Insert into DanToc(TenDanToc) values (N'" + txtDanToc.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+                    
+                    if (DanTocBUS.Instance.ThemDanToc(danTocDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới!");
                     }
@@ -89,9 +92,7 @@ namespace HRM_VTHP.DanhMuc
             else
             {
                 //Update du lieu
-                string sql = "";
-                sql = "Update DanToc set TenDanToc = N'" + txtDanToc.Text + "' where DanTocID = '"+DanTocID+"'";
-                Core.Core.RunSql(sql);
+                DanTocBUS.Instance.UpdateDanToc(danTocDTO);
                 Load_DuLieu();
             }
             Reset();
@@ -104,17 +105,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            //delete du lieu
-            string sql = "select * from HoSoNhanVien where DanTocID = '"+DanTocID+"'";
-            DataTable dt = Core.Core.GetData(sql);
+            DanTocDTO danTocDTO = new DanTocDTO();
+            danTocDTO.DanTocID = DanTocID;
+            DataTable dt = DanTocBUS.Instance.LoadDanTocFromHoSoNhanVien(danTocDTO);
             if(dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Hồ sơ nhân viên");
             }
             else
             {
-                sql = "Delete DanToc where DanTocID = '" + DanTocID + "'";
-                Core.Core.RunSql(sql);
+                DanTocBUS.Instance.DeleteDanToc(danTocDTO);
                 Load_DuLieu();
                 Reset();
             }
