@@ -9,7 +9,7 @@ namespace HRM_VTHP.Core.DTO
     class HoSoNhanVienDTO
     {
         public int NhanVienID { get; set; }
-        public DateTime int NgayVaoLam { get; set; }
+        public DateTime NgayVaoLam { get; set; }
         public int DanTocID { get; set; }
         public int TonGiaoID { get; set; }
         public int TinhThanhID { get; set; }

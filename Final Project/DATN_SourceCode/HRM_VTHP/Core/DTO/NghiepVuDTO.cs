@@ -10,6 +10,6 @@ namespace HRM_VTHP.Core.DTO
     {
         public int NghiepVuID { get; set; }
         public string TenNghiepVu { get; set; }
-        public string URL { get; set }
+        public string URL { get; set; }
     }
 }
