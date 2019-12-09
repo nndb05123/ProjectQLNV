@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,9 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int TinHocID = 0;
         void Load_DL()
         {
-            string sql = "Select * from TinHoc";
-            DataTable dt = Core.Core.GetData(sql);
-            grdTinHoc.DataSource = dt;
+            grdTinHoc.DataSource = TinHocBUS.Instance.LoadAllTinHoc();
         }
         void Reset()
         {
@@ -66,6 +66,9 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            TinHocDTO tinHocDTO = new TinHocDTO();
+            tinHocDTO.TinHocID = TinHocID;
+            tinHocDTO.TenCCTH = txtCCTinHoc.Text.Trim();
             if (kt == 1)
             {
                 if(txtCCTinHoc.Text == "")
@@ -74,8 +77,7 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into TinHoc(TenCCTH) values (N'" + txtCCTinHoc.Text + "')";
-                    if(Core.Core.RunSql(sql) == -1)
+                    if(TinHocBUS.Instance.ThemTinHoc(tinHocDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     } 
@@ -87,8 +89,7 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = "Update TinHoc set TenCCTH = N'" + txtCCTinHoc.Text + "' where TinHocID = '" + TinHocID + "'";
-                Core.Core.RunSql(sql);
+                TinHocBUS.Instance.UpdateTinHoc(tinHocDTO);
                 Load_DL();
             }
             Reset();
@@ -104,16 +105,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from HoSoNhanVien where TinHocID = '" + TinHocID + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            TinHocDTO tinHocDTO = new TinHocDTO();
+            tinHocDTO.TinHocID = TinHocID;
+            DataTable dt = TinHocBUS.Instance.LoadTinHocFromHoSoNhanVien(tinHocDTO);
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Hồ sơ nhân viên");
             }
             else
             {
-                sql = "Delete TinHoc where TinHocID = '" + TinHocID + "'";
-                Core.Core.RunSql(sql);
+                TinHocBUS.Instance.DeleteTinHoc(tinHocDTO);
                 Load_DL();
                 Reset();
             }
