@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,8 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int BoPhanID = 0;
         void Load_DL()
         {
-            string sql = @"Select * from BoPhan";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = BoPhanBUS.Instance.LoadAllBoPhan();
             grdBoPhan.DataSource = dt;
         }
         void Reset()
@@ -73,16 +74,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from NhanVienBoPhan where BoPhanID = '" + BoPhanID + "'";
-            DataTable dtNVBP = Core.Core.GetData(sql);
+            BoPhanDTO boPhanDTO = new BoPhanDTO();
+            boPhanDTO.BoPhanID = BoPhanID;
+            DataTable dtNVBP = BoPhanBUS.Instance.LoadBoPhanFromNhanVienBoPhan(boPhanDTO);
             if(dtNVBP.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong NhanVienBoPhan");
             }
             else
             {
-                sql = "Delete BoPhan where BoPhanID = '" + BoPhanID + "'";
-                Core.Core.RunSql(sql);
+                BoPhanBUS.Instance.DeleteBoPhan(boPhanDTO);
                 Load_DL();
             }
             
@@ -91,7 +92,10 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if(kt == 1)
+            BoPhanDTO boPhan = new BoPhanDTO();
+            boPhan.TenBoPhan = txtBoPhan.Text.Trim();
+            boPhan.BoPhanID = BoPhanID;
+            if (kt == 1)
             {
                 if(txtBoPhan.Text == "")
                 {
@@ -99,8 +103,8 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into BoPhan(TenBoPhan) values(N'" + txtBoPhan.Text + "')";
-                    if(Core.Core.RunSql(sql) == -1)
+
+                    if(BoPhanBUS.Instance.ThemBoPhan(boPhan) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -112,8 +116,7 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = "Update BoPhan set TenBoPhan =N'" + txtBoPhan.Text + "' where BoPhanID ='" + BoPhanID + "'";
-                Core.Core.RunSql(sql);
+                BoPhanBUS.Instance.UpdateBoPhan(boPhan);
                 Load_DL();
             }
             Reset();
