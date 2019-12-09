@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,30 @@ namespace HRM_VTHP.Core.DAO
         public string LoadAllBangCap()
         {
             string sql = "Select * from BangCap";
+            return sql;
+        }
+
+        public string ThemBangCap(string BangCap)
+        {
+            string sql = $"Insert into BangCap(TenBangCap) values(N'{BangCap}')";
+            return sql;
+        }
+
+        public string UpdateBangCap(BangCapDTO bangCapDTO)
+        {
+            string sql = $"Update BangCap set TenBangCap =N'{bangCapDTO.TenBangCap}' where BangCapID ='{ bangCapDTO.BangCapID}'";
+            return sql;
+        }
+
+        public string DeleteBangCap(BangCapDTO bangCapDTO)
+        {
+            string sql = "Delete BangCap where BangCapID = '" + bangCapDTO.BangCapID + "'";
+            return sql;
+        }
+
+        public string LoadBangCapFromHoSoNhanVien(BangCapDTO bangCapDTO)
+        {
+            string sql = "Select * from HoSoNhanVien where BangCapID = '" + bangCapDTO.BangCapID + "'";
             return sql;
         }
     }

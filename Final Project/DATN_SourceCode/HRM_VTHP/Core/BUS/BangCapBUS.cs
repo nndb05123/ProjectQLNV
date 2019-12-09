@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HRM_VTHP.Core.DAO;
 using System.Data;
 using HRM_VTHP.Core;
+using HRM_VTHP.Core.DTO;
 
 namespace HRM_VTHP.Core.BUS
 {
@@ -28,6 +29,30 @@ namespace HRM_VTHP.Core.BUS
 
         public DataTable LoadAllBangCap() {
             string sql = BangCapDAO.Instance.LoadAllBangCap();
+            DataTable dt = Core.GetData(sql);
+            return dt;
+        }
+
+        public int ThemBangCap(BangCapDTO bangCapDTO)
+        {
+            return Core.RunSql(BangCapDAO.Instance.ThemBangCap(bangCapDTO.TenBangCap));
+        }
+
+        public void UpdateBangCap(BangCapDTO bangCapDTO)
+        {
+            Core.RunSql(BangCapDAO.Instance.UpdateBangCap(bangCapDTO));
+
+        }
+
+        public void DeleteBangCap(BangCapDTO bangCapDTO)
+        {
+            Core.RunSql(BangCapDAO.Instance.DeleteBangCap(bangCapDTO));
+
+        }
+
+        public DataTable LoadBangCapFromHoSoNhanVien(BangCapDTO bangCapDTO)
+        {
+            string sql = BangCapDAO.Instance.LoadBangCapFromHoSoNhanVien(bangCapDTO);
             DataTable dt = Core.GetData(sql);
             return dt;
         }

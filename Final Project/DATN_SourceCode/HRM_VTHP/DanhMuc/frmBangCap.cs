@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
 
 namespace HRM_VTHP.DanhMuc
 {
@@ -74,8 +75,9 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = $"Insert into BangCap(TenBangCap) values(N'{txtBangCap.Text}')";
-                    if(Core.Core.RunSql(sql) == -1)
+                    BangCapDTO bangCapDTO = new BangCapDTO();
+                    bangCapDTO.TenBangCap = txtBangCap.Text.Trim();
+                    if(BangCapBUS.Instance.ThemBangCap(bangCapDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }  
@@ -87,24 +89,34 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = $"Update BangCap set TenBangCap =N'{txtBangCap.Text}' where BangCapID ='{ BangCapID}'";
-                Core.Core.RunSql(sql);
-                Load_DL();
+                if (txtBangCap.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa nhập tên bằng cấp");
+                } else
+                {
+                    BangCapDTO bangCapDTO = new BangCapDTO();
+                    bangCapDTO.TenBangCap = txtBangCap.Text.Trim();
+                    bangCapDTO.BangCapID = BangCapID;
+                    BangCapBUS.Instance.UpdateBangCap(bangCapDTO);
+                    Load_DL();
+                }
+
             }
             Reset();
         }
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from HoSoNhanVien where BangCapID = '" + BangCapID + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            BangCapDTO bangCap = new BangCapDTO();
+            bangCap.TenBangCap = txtBangCap.Text.Trim();
+            bangCap.BangCapID = BangCapID;
+            DataTable dt = BangCapBUS.Instance.LoadBangCapFromHoSoNhanVien(bangCap);
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Hồ sơ nhân viên");
             }
             else
             {
-                sql = "Delete BangCap where BangCapID = '" + BangCapID + "'";
-                Core.Core.RunSql(sql);
+                BangCapBUS.Instance.DeleteBangCap(bangCap);
                 Load_DL();
                 Reset();
             }
