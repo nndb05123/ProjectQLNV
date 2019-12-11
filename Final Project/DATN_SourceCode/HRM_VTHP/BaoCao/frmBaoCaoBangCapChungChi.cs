@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +22,7 @@ namespace HRM_VTHP.BaoCao
             try
             {
                 BaoCaoBangCapChungChi reports = new BaoCaoBangCapChungChi(cmbTenBoPhan.Text, cmbTenBoPhan.SelectedValue.ToString());
-                reports.Parameters["BoPhanID"].Value = cmbTenBoPhan.SelectedValue.ToString();
+                reports.Parameters["BoPhanID"].Value = int.Parse( cmbTenBoPhan.SelectedValue.ToString());
                 documentViewer1.DocumentSource = reports;
                 reports.CreateDocument();
             }
@@ -39,8 +40,7 @@ namespace HRM_VTHP.BaoCao
         private void frmBaoCaoBangCapChungChi_Load(object sender, EventArgs e)
         {
             LoadBaoCao();
-            string sql = "select *from BoPhan";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = BoPhanBUS.Instance.LoadAllBoPhan();
             cmbTenBoPhan.DataSource = dt;
             cmbTenBoPhan.ValueMember = "BoPhanID";
             cmbTenBoPhan.DisplayMember = "TenBoPhan";

@@ -29,7 +29,7 @@ namespace HRM_VTHP.BaoCao
 
                 BaoCaoLuongHangThang reports = new BaoCaoLuongHangThang(cbbBoPhan.Text, dtpThang.Value.ToString("MM/yyyy"));
 
-                reports.Parameters["BoPhanID"].Value = cbbBoPhan.SelectedValue.ToString();
+                reports.Parameters["BoPhanID"].Value = int.Parse( cbbBoPhan.SelectedValue.ToString());
                 reports.Parameters["Thang"].Value = dtpThang.Value.ToString("yyyyMM");
                 reports.Parameters["BHYT"].Value = BHYT;
                 reports.Parameters["BHXH"].Value = BHXH;

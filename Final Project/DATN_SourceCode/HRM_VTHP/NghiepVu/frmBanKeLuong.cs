@@ -27,25 +27,85 @@ namespace HRM_VTHP.NghiepVu
 
             try
             {
-
                 string time = dtpThang.Value.Year.ToString() + dtpThang.Value.Month.ToString("D2");
-                string sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
-                                c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap, g.HieuSuat,
-                                f.TienLuongCung * g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
-                                f.TienLuongCung * g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2) ) - b.TamUng ThucLinh 
+                string queryTamUng = @"select  a.NhanVienID, b.TamUng
                             From NhanVien a 
-                            inner join ChiTietTamUng b on a.NhanVienID = b.NhanVienID and b.ThangTamUng = '" + time + @"'
+                            left join ChiTietTamUng b on a.NhanVienID = b.NhanVienID and b.ThangTamUng = '" + time + @"'";
+                DataTable data_NhanVienTamUng = Core.Core.GetData(queryTamUng);
+
+                String sql = "";
+                int idNhanvien;
+                DataTable data_BanKeLuong = new DataTable();
+                data_BanKeLuong.Columns.Add("NhanVienID");
+                data_BanKeLuong.Columns.Add("MaNV");
+                data_BanKeLuong.Columns.Add("TenNV");
+                data_BanKeLuong.Columns.Add("TamUng");
+                data_BanKeLuong.Columns.Add("ThangTamUng");
+                data_BanKeLuong.Columns.Add("NgayCongChuan");
+                data_BanKeLuong.Columns.Add("ThangKeLuong");
+                data_BanKeLuong.Columns.Add("TrangThai");
+                data_BanKeLuong.Columns.Add("ChiTietBanKeLuongID");
+                data_BanKeLuong.Columns.Add("ThueThuNhapCaNhan");
+                data_BanKeLuong.Columns.Add("NgayTinhLuong");
+                data_BanKeLuong.Columns.Add("TienLuongCung");
+                data_BanKeLuong.Columns.Add("PhuCap");
+                data_BanKeLuong.Columns.Add("HieuSuat");
+                data_BanKeLuong.Columns.Add("TongLuong");
+                data_BanKeLuong.Columns.Add("ThucLinh");
+                for (int i = 0; i < data_NhanVienTamUng.Rows.Count; i++)
+                {
+                    idNhanvien = int.Parse(data_NhanVienTamUng.Rows[i][0].ToString());
+                    if (!string.IsNullOrEmpty(data_NhanVienTamUng.Rows[i][1].ToString()))
+                    {
+                        sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
+                                c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap, g.HieuSuat,
+                                f.TienLuongCung*g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
+                                f.TienLuongCung *g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2) ) - b.TamUng ThucLinh 
+                            From NhanVien a 
+                            left join ChiTietTamUng b on a.NhanVienID = b.NhanVienID and b.ThangTamUng = '" + time + @"'
                             inner join NhanVienChucDanh d on a.NhanVienID = d.NhanVienID
                             inner join LuongChucDanh f on f.ChucDanhID = d.ChucDanhID
                             inner join DanhGiaHieuSuat g on g.NhanVienID = a.NhanVienID and g.Thang = '" + time + @"'
-                            left join ChiTietBanKeLuong c on c.NhanVienID = a.NhanVienID and  c.ThangKeLuong = '" + time + "'";
-                DataTable dt = Core.Core.GetData(sql);
-                bindingSource1.DataSource = dt;
+                            left join ChiTietBanKeLuong c on c.NhanVienID = a.NhanVienID and  c.ThangKeLuong = '" + time + @"'Where a.NhanVienID='" + idNhanvien + @"'";
+                        DataTable dt = new DataTable();
+                        dt = Core.Core.GetData(sql);
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            data_BanKeLuong.Rows.Add(dr.ItemArray);
+                        }
+
+                    }
+                    else
+                    {
+                        sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
+                                c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap, g.HieuSuat,
+                                f.TienLuongCung*g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
+                                f.TienLuongCung *g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2) ) ThucLinh 
+                            From NhanVien a 
+                            left join ChiTietTamUng b on a.NhanVienID = b.NhanVienID and b.ThangTamUng = '" + time + @"'
+                            inner join NhanVienChucDanh d on a.NhanVienID = d.NhanVienID
+                            inner join LuongChucDanh f on f.ChucDanhID = d.ChucDanhID
+                            inner join DanhGiaHieuSuat g on g.NhanVienID = a.NhanVienID and g.Thang = '" + time + @"'
+                            left join ChiTietBanKeLuong c on c.NhanVienID = a.NhanVienID and  c.ThangKeLuong = '" + time + @"'Where a.NhanVienID='" + idNhanvien + @"'";
+                        DataTable d2t = new DataTable();
+                        d2t = Core.Core.GetData(sql);
+                        foreach (DataRow dr in d2t.Rows)
+                        {
+                            data_BanKeLuong.Rows.Add(dr.ItemArray);
+                        }
+                    }
+
+                }
+
+
+                bindingSource1.DataSource = data_BanKeLuong;
+
             }
             catch (Exception)
             {
                 MessageBox.Show("Lỗi không tính được lương!");
             }
+
 
         }
 

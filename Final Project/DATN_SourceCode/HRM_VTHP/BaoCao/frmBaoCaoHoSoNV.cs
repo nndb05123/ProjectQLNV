@@ -23,7 +23,7 @@ namespace HRM_VTHP.BaoCao
             {
 
                 BaoCaoHoSoNV reports = new BaoCaoHoSoNV(cmbDonVi.Text, cmbDonVi.SelectedValue.ToString());
-                reports.Parameters["BoPhanID"].Value = cmbDonVi.SelectedValue.ToString();
+                reports.Parameters["BoPhanID"].Value = int.Parse( cmbDonVi.SelectedValue.ToString());
                 documentViewer1.DocumentSource = reports;
                 reports.CreateDocument();
             }catch(Exception)

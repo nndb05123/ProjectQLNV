@@ -23,7 +23,7 @@ namespace HRM_VTHP.BaoCao
 
                 ThongKeHopDongHetHan reports = new ThongKeHopDongHetHan(cmbTrangThai.Text);
 
-                reports.Parameters["TrangThaiID"].Value = cmbTrangThai.SelectedValue.ToString();
+                reports.Parameters["TrangThaiID"].Value = cmbTrangThai.SelectedValue;
                 documentViewer1.DocumentSource = reports;
                 reports.CreateDocument();
             }

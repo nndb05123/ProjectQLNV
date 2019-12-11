@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,8 +24,8 @@ namespace HRM_VTHP.BaoCao
 
                 BaoCaoKhenThuongKyLuat reports = new BaoCaoKhenThuongKyLuat(cmbBoPhan.Text, cmbBoPhan.SelectedValue.ToString(), cmbLoaiQuyetDinh.Text, cmbLoaiQuyetDinh.SelectedValue.ToString());
                 
-                reports.Parameters["BoPhanID"].Value = cmbBoPhan.SelectedValue.ToString();
-                reports.Parameters["LoaiQuyetDinhID"].Value = cmbLoaiQuyetDinh.SelectedValue.ToString();
+                reports.Parameters["BoPhanID"].Value = int.Parse( cmbBoPhan.SelectedValue.ToString());
+                reports.Parameters["LoaiQuyetDinhID"].Value = int.Parse(cmbLoaiQuyetDinh.SelectedValue.ToString());
                 documentViewer1.DocumentSource = reports;
                 reports.CreateDocument();
             }
@@ -47,12 +48,11 @@ namespace HRM_VTHP.BaoCao
         private void frmBaoCaoKTKL_Load(object sender, EventArgs e)
         {
             LoadBaoCao();
-            string sql = "Select * from BoPhan";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = BoPhanBUS.Instance.LoadAllBoPhan();
             cmbBoPhan.DataSource = dt;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
-            sql = "Select *from LoaiQuyetDinh";
+            string sql = "Select *from LoaiQuyetDinh";
             DataTable dt1 = Core.Core.GetData(sql);
             cmbLoaiQuyetDinh.DataSource = dt1;
             cmbLoaiQuyetDinh.ValueMember = "LoaiQuyetDinhID";

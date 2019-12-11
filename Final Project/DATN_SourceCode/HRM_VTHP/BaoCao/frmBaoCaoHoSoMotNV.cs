@@ -70,8 +70,8 @@ namespace HRM_VTHP.BaoCao
                 {
 
                     BaoCaoHoSoMotNV reports = new BaoCaoHoSoMotNV(dt);
-                    reports.Parameters["BoPhanID"].Value = cbbDonVi.SelectedValue.ToString();
-                    reports.Parameters["NhanVienID"].Value = cbbNhanVien.SelectedValue.ToString();
+                    reports.Parameters["BoPhanID"].Value = cbbDonVi.SelectedValue;
+                    reports.Parameters["NhanVienID"].Value = cbbNhanVien.SelectedValue;
                     documentViewer1.DocumentSource = reports;
                     reports.CreateDocument();
                 }else
