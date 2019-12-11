@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HRM_VTHP.Core.DTO;
 
 namespace HRM_VTHP.DanhMuc
 {
@@ -20,9 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int LoaiHopDongID = 0;
         void Load_DL()
         {
-            string sql = "Select * from LoaiHopDong";
-            DataTable dt = Core.Core.GetData(sql);
-            grdLoaiHopDong.DataSource = dt;
+            grdLoaiHopDong.DataSource = LoaiHopDongBUS.Instance.LoadAllLoaiHopDong();
         }
         void Reset()
         {
@@ -60,7 +60,10 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if(kt == 1)
+            LoaiHopDongDTO loaiHopDongDTO = new LoaiHopDongDTO();
+            loaiHopDongDTO.LoaiHopDongID = LoaiHopDongID;
+            loaiHopDongDTO.TenLoaiHopDong = txtLoaiHopDong.Text.Trim();
+            if (kt == 1)
             { 
                 if(txtLoaiHopDong.Text == "")
                 {
@@ -68,8 +71,8 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into LoaiHopDong(TenLoaiHopDong) values(N'" + txtLoaiHopDong.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+                    
+                    if (LoaiHopDongBUS.Instance.ThemLoaiHopDong(loaiHopDongDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -82,8 +85,7 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = "Update LoaiHopDong set TenLoaiHopDong = N'" + txtLoaiHopDong.Text + "' where LoaiHopDongID = '" + LoaiHopDongID + "'";
-                Core.Core.RunSql(sql);
+                LoaiHopDongBUS.Instance.UpdateLoaiHopDong(loaiHopDongDTO);
                 Load_DL();
                 Reset();
             }
@@ -93,16 +95,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from HopDong where LoaiHopDongID = '"+LoaiHopDongID+"'";
-            DataTable dt = Core.Core.GetData(sql);
-            if(dt.Rows.Count > 0)
+            LoaiHopDongDTO loaiHopDongDTO = new LoaiHopDongDTO();
+            loaiHopDongDTO.LoaiHopDongID = LoaiHopDongID;
+            DataTable dt = LoaiHopDongBUS.Instance.LoadLoaiHopDongFromHoSoNhanVien(loaiHopDongDTO);
+            if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Hợp đồng");
             }
             else
             {
-                sql = "Delete LoaiHopDong where LoaiHopDongID = '" + LoaiHopDongID + "'";
-                Core.Core.RunSql(sql);
+                LoaiHopDongBUS.Instance.DeleteLoaiHopDong(loaiHopDongDTO);
                 Load_DL();
                 Reset();
             }

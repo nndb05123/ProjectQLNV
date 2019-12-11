@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,9 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int TonGiaoID = 0;
         void Load_DL()
         {
-            string sql = "Select * from TonGiao";
-            DataTable dt = Core.Core.GetData(sql);
-            grdTonGiao.DataSource = dt;
+            grdTonGiao.DataSource = TonGiaoBUS.Instance.LoadAllTonGiao();
         }
         void Reset()
         {
@@ -66,7 +66,10 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if(kt == 1)
+            TonGiaoDTO tonGiaoDTO = new TonGiaoDTO();
+            tonGiaoDTO.TonGiaoID = TonGiaoID;
+            tonGiaoDTO.TenTonGiao = txtTonGiao.Text.Trim();
+            if (kt == 1)
             {
                 if (txtTonGiao.Text == "")
                 {
@@ -74,8 +77,8 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into TonGiao(TenTonGiao) values (N'" + txtTonGiao.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+                    //string sql = "Insert into TonGiao(TenTonGiao) values (N'" + txtTonGiao.Text + "')";
+                    if (TonGiaoBUS.Instance.ThemTonGiao(tonGiaoDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -88,8 +91,7 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = "Update TonGiao set TenTonGiao =N'" + txtTonGiao.Text + "' where TonGiaoID = '" + TonGiaoID + "'";
-                Core.Core.RunSql(sql);
+                TonGiaoBUS.Instance.UpdateTonGiao(tonGiaoDTO);
                 Load_DL();
             }
             Reset();
@@ -106,16 +108,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from HoSoNhanVien where TonGiaoID = '" + TonGiaoID + "'";
-            DataTable dt = Core.Core.GetData(sql);
-            if(dt.Rows.Count > 0)
+            TonGiaoDTO tonGiaoDTO = new TonGiaoDTO();
+            tonGiaoDTO.TonGiaoID = TonGiaoID;
+            DataTable dt = TonGiaoBUS.Instance.LoadTonGiaoFromHoSoNhanVien(tonGiaoDTO);
+            if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Hồ sơ nhân viên");
             }
             else
             {
-                sql = "Delete TonGiao where TonGiaoID = '" + TonGiaoID + "'";
-                Core.Core.RunSql(sql);
+                TonGiaoBUS.Instance.DeleteTonGiao(tonGiaoDTO);
                 Load_DL();
                 Reset();
             }

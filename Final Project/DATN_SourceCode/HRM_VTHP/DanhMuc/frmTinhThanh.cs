@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,9 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int TinhThanhID = 0;
         void Load_DL()
         {
-            string sql = @"Select * from TinhThanh";
-            DataTable dt = Core.Core.GetData(sql);
-            grdTinhThanh.DataSource = dt;
+            grdTinhThanh.DataSource = TinhThanhBUS.Instance.LoadAllTinhThanh();
         }
         void Reset()
         {
@@ -66,6 +66,9 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            TinhThanhDTO tinhThanhDTO = new TinhThanhDTO();
+            tinhThanhDTO.TinhThanhID = TinhThanhID;
+            tinhThanhDTO.TenTinhThanh = txtTinhThanh.Text.Trim();
             if (kt == 1)
             {
                 if (txtTinhThanh.Text == "")
@@ -74,8 +77,8 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into TinhThanh(TenTinhThanh) values (N'" + txtTinhThanh.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+                    //string sql = "Insert into TinhThanh(TenTinhThanh) values (N'" + txtTinhThanh.Text + "')";
+                    if (TinhThanhBUS.Instance.ThemTinhThanh(tinhThanhDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới!");
                     }
@@ -88,8 +91,7 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = "Update TinhThanh set TenTinhThanh = N'" + txtTinhThanh.Text + "' where TinhThanhID = '" + TinhThanhID + "'";
-                Core.Core.RunSql(sql);
+                TinhThanhBUS.Instance.UpdateTinhThanh(tinhThanhDTO);
                 Load_DL();
             }
             Reset();
@@ -105,16 +107,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from HoSoNhanVien where TinhThanhID = '" + TinhThanhID + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            TinhThanhDTO tinhThanhDTO = new TinhThanhDTO();
+            tinhThanhDTO.TinhThanhID = TinhThanhID;
+            DataTable dt = TinhThanhBUS.Instance.LoadTinhThanhFromHoSoNhanVien(tinhThanhDTO);
             if (dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Hồ sơ nhân viên");
             }
             else
             {
-                sql = "Delete TinhThanh where TinhThanhID = '" + TinhThanhID + "'";
-                Core.Core.RunSql(sql);
+                TinhThanhBUS.Instance.DeleteTinhThanh(tinhThanhDTO);
                 Load_DL();
                 Reset();
             }

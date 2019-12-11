@@ -8,5 +8,6 @@ namespace HRM_VTHP.Core.DAO
 {
     class ChamCongDAO
     {
+        
     }
 }

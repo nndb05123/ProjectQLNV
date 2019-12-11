@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace HRM_VTHP.Core.DAO
 {
     class HopDongDAO
     {
+        
     }
 }
