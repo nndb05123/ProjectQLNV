@@ -55,9 +55,5 @@ namespace HRM_VTHP.Core.BUS
             Core.RunSql(LoaiHopDongDAO.Instance.DeleteLoaiHopDong(loaiHopDongDTO));
         }
 
-        internal int ThemLoaiHopDong(object loaiHopDongDTO)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
