@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,11 +22,7 @@ namespace HRM_VTHP.NghiepVu
         int NhanVienID = 0;
         void Load_DL()
         {
-            string sql = @"Select a.NhanVienID, a.MaNV, a.TenNV, a.NgaySinh, b.GioiTinhID ,b.GioiTinh, a.DiaChi, a.SDT, a.SoCMND, a.Email, a.TrangThaiID 
-                        from NhanVien a inner join GioiTinh b 
-                        on a.GioiTinhID = b.GioiTinhID";
-            DataTable dt = Core.Core.GetData(sql);
-            grdNhanVien.DataSource = dt;
+            grdNhanVien.DataSource = NhanVienBUS.Instance.LoadAllNhanVien();
         }
         void Reset()
         {
@@ -53,8 +51,7 @@ namespace HRM_VTHP.NghiepVu
 
         private void frmNhanVien_Load(object sender, EventArgs e)
         {
-            string sql = "Select * from GioiTinh";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = NhanVienBUS.Instance.LoadAllGioiTinh();
             cmbGioiTinh.DataSource = dt;
             cmbGioiTinh.ValueMember = "GioiTinhID";
             cmbGioiTinh.DisplayMember = "GioiTinh";
@@ -109,9 +106,19 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if(kt == 1)
+            NhanVienDTO nhanVienDTO = new NhanVienDTO();
+            nhanVienDTO.MaNV = txtMaNV.Text.Trim();
+            nhanVienDTO.TenNV = txtTenNV.Text.Trim();
+            nhanVienDTO.NgaySinh = dtpNgaySinh.Value;
+            nhanVienDTO.GioiTinhID = bool.Parse(cmbGioiTinh.SelectedValue.ToString());
+            nhanVienDTO.SDT = txtSDT.Text.Trim();
+            nhanVienDTO.SoCMND = txtSoCMND.Text.Trim();
+            nhanVienDTO.Email = txtEmail.Text.Trim();
+            nhanVienDTO.DiaChi = txtDiaChi.Text.Trim();
+            nhanVienDTO.TrangThaiID = cbTrangThaiID.Checked;
+            if (kt == 1)
             {
-                if(txtMaNV.Text == "" || txtTenNV.Text == "" || txtDiaChi.Text == "" || txtEmail.Text == "" || txtSoCMND.Text == "" || txtSDT.Text == "")
+                if (txtMaNV.Text == "" || txtTenNV.Text == "" || txtDiaChi.Text == "" || txtEmail.Text == "" || txtSoCMND.Text == "" || txtSDT.Text == "")
                 {
                     MessageBox.Show("Bạn chưa nhập 1 số thông tin cần nhập");
                 }
@@ -121,8 +128,7 @@ namespace HRM_VTHP.NghiepVu
                 }
                 else
                 {
-                    string sql = "Insert into NhanVien(MaNV, TenNV, NgaySinh, GioiTinhID, SDT, SoCMND, Email, DiaChi, TrangThaiID) values ('" + txtMaNV.Text + "', N'" + txtTenNV.Text + "', '" + dtpNgaySinh.Value.ToString("yyyy-MM-dd") + "', '" + cmbGioiTinh.SelectedValue + "', '" + txtSDT.Text + "', '" + txtSoCMND.Text + "' , '" + txtEmail.Text + "', N'" + txtDiaChi.Text + "', '"+cbTrangThaiID.Checked+"')";
-                    if(Core.Core.RunSql(sql) == -1)
+                    if(NhanVienBUS.Instance.ThemNhanVien(nhanVienDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -134,8 +140,8 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update NhanVien set MaNV = '" + txtMaNV.Text + "', TenNV = N'" + txtTenNV.Text + "', NgaySinh = '" + dtpNgaySinh.Value.ToString("yyyy-MM-dd") + "', GioiTinhID = '" + cmbGioiTinh.SelectedValue + "', SDT = '" + txtSDT.Text + "', SoCMND = '" + txtSoCMND.Text + "', Email = '" + txtEmail.Text + "', DiaChi = N'" + txtDiaChi.Text + "', TrangThaiID = '"+cbTrangThaiID.Checked+"' where NhanVienID = '"+NhanVienID+"'";
-                Core.Core.RunSql(sql);
+                nhanVienDTO.NhanVienID = NhanVienID;
+                NhanVienBUS.Instance.UpdateNhanVien(nhanVienDTO);
                 Load_DL();
             }
             Reset();
@@ -208,8 +214,7 @@ namespace HRM_VTHP.NghiepVu
             // Nếu không thì xóa
             else
             {
-                sql = "Delete NhanVien where NhanVienID = '" + NhanVienID + "'";
-                Core.Core.RunSql(sql);
+                NhanVienBUS.Instance.DeleteNhanVien(NhanVienID);
                 Load_DL();
             }
              Reset();     

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,16 +25,7 @@ namespace HRM_VTHP.NghiepVu
         //int NhanVienID = 0;
         void Load_DL()
         {
-            string sql = @"select b.NhanVienID, b.TenNV, a.NgayVaoLam, c.DanTocID, c.TenDanToc, d.TonGiaoID, d.TenTonGiao, e.TinhThanhID, e.TenTinhThanh,f.NgoaiNguID, f.TenCCNN, g.TinHocID, g.TenCCTH, h.BangCapID, h.TenBangCap, a.GhiChu, a.ImagePath
-                            from HoSoNhanVien a 
-                            inner join NhanVien b on a.NhanVienID=b.NhanVienID
-                            inner join DanToc c on a.DanTocID=c.DanTocID
-                            inner join TonGiao d on a.TonGiaoID=d.TonGiaoID
-                            inner join TinhThanh e on a.TinhThanhID=e.TinhThanhID
-                            inner join NgoaiNgu f on a.NgoaiNguID=f.NgoaiNguID
-                            inner join TinHoc g on a.TinHocID=g.TinHocID
-                            inner join BangCap h on a.BangCapID=h.BangCapID";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = HoSoNhanVienBUS.Instance.LoadAllHSNhanVien();
             grdHoSoNhanVien.DataSource = dt;
         }
         void Reset()
@@ -92,11 +85,21 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            string ImagePath = "\\AnhHSNV"+ CurrentImagePath;
+            string ImagePath = "\\AnhHSNV" + CurrentImagePath;
+            HoSoNhanVienDTO hsNhanVien = new HoSoNhanVienDTO();
+            hsNhanVien.NhanVienID = int.Parse(cmbTenNV.SelectedValue.ToString());
+            hsNhanVien.NgayVaoLam = dtpNgayVaoLam.Value;
+            hsNhanVien.DanTocID = int.Parse(cmbDanToc.SelectedValue.ToString());
+            hsNhanVien.TonGiaoID = int.Parse(cmbTonGiao.SelectedValue.ToString());
+            hsNhanVien.TinhThanhID = int.Parse(cmbTinhThanh.SelectedValue.ToString());
+            hsNhanVien.NgoaiNguID = int.Parse(cmbNgoaiNgu.SelectedValue.ToString());
+            hsNhanVien.TinHocID = int.Parse(cmbTinHoc.SelectedValue.ToString());
+            hsNhanVien.BangCapID = int.Parse(cmbBangCap.SelectedValue.ToString());
+            hsNhanVien.GhiChu = txtGhiChu.Text.Trim();
+            hsNhanVien.ImagePath = ImagePath;
             if (kt == 1)
             {
-                string sql = "Insert into HoSoNhanVien(NhanVienID, NgayVaoLam, DanTocID, TonGiaoID, TinhThanhID, NgoaiNguID, TinHocID, BangCapID, GhiChu, ImagePath) values ('" + cmbTenNV.SelectedValue + "', '" + dtpNgayVaoLam.Value + "', '"+cmbDanToc.SelectedValue+"', '"+cmbTonGiao.SelectedValue+"', '"+cmbTinhThanh.SelectedValue+"', '"+cmbNgoaiNgu.SelectedValue+"', '"+cmbTinHoc.SelectedValue+"', '"+cmbBangCap.SelectedValue+"', '"+txtGhiChu.Text+"', '"+ImagePath+"' )";
-                if (Core.Core.RunSql(sql) == -1)
+                if (HoSoNhanVienBUS.Instance.ThemHSNhanVien(hsNhanVien) == -1)
                 {
                     MessageBox.Show("Lỗi khi thêm mới");
                 }
@@ -107,8 +110,7 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update HoSoNhanVien set NhanVienID ='" + cmbTenNV.SelectedValue + "', NgayVaoLam = '" + dtpNgayVaoLam.Value + "', DanTocID='"+cmbDanToc.SelectedValue+ "',  TonGiaoID='" + cmbTonGiao.SelectedValue + "', TinhThanhID='" + cmbTinhThanh.SelectedValue + "', NgoaiNguID='" + cmbNgoaiNgu.SelectedValue + "', TinHocID='" + cmbTinHoc.SelectedValue + "', BangCapID='" + cmbBangCap.SelectedValue + "',GhiChu='" + txtGhiChu.Text + "', ImagePath = '"+ImagePath+"' where NhanVienID = '" + cmbTenNV.SelectedValue + "'  and BangCapID = '" + cmbBangCap.SelectedValue + "' and TinHocID ='" + cmbTinHoc.SelectedValue + "' and NgoaiNguID = '" + cmbNgoaiNgu.SelectedValue + "'";
-                Core.Core.RunSql(sql);
+                HoSoNhanVienBUS.Instance.UpdateHoSoNhanVien(hsNhanVien);
                 Load_DL();
             }
             Reset();
@@ -121,8 +123,7 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Delete HoSoNhanVien where NhanVienID='"+cmbTenNV.SelectedValue+"' and BangCapID = '"+cmbBangCap.SelectedValue+"' and TinHocID ='"+cmbTinHoc.SelectedValue+"' and NgoaiNguID = '"+cmbNgoaiNgu.SelectedValue+"'";
-            Core.Core.RunSql(sql);
+            HoSoNhanVienBUS.Instance.DeleteHSNhanVien(int.Parse(cmbTenNV.SelectedValue.ToString()));
             Load_DL();
             Reset();
 
@@ -130,38 +131,31 @@ namespace HRM_VTHP.NghiepVu
 
         private void frmHoSoNV_Load(object sender, EventArgs e)
         {
-            string sql = "Select * from DanToc";
-            DataTable dt1 = Core.Core.GetData(sql);
+            DataTable dt1 = DanTocBUS.Instance.LoadAllDanToc();
             cmbDanToc.DataSource = dt1;
             cmbDanToc.ValueMember = "DanTocID";
             cmbDanToc.DisplayMember = "TenDanToc";
-            sql = "Select * from TonGiao";
-            DataTable dt2 = Core.Core.GetData(sql);
+            DataTable dt2 = TonGiaoBUS.Instance.LoadAllTonGiao();
             cmbTonGiao.DataSource = dt2;
             cmbTonGiao.ValueMember = "TonGiaoID";
             cmbTonGiao.DisplayMember = "TenTonGiao";
-            sql = "Select * from TinhThanh";
-            DataTable dt3 = Core.Core.GetData(sql);
+            DataTable dt3 = TinhThanhBUS.Instance.LoadAllTinhThanh();
             cmbTinhThanh.DataSource = dt3;
             cmbTinhThanh.ValueMember = "TinhThanhID";
             cmbTinhThanh.DisplayMember = "TenTinhThanh";
-            sql = "Select * from NgoaiNgu";
-            DataTable dt4 = Core.Core.GetData(sql);
+            DataTable dt4 = NgoaiNguBUS.Instance.LoadAllNgoaiNgu();
             cmbNgoaiNgu.DataSource = dt4;
             cmbNgoaiNgu.ValueMember = "NgoaiNguID";
             cmbNgoaiNgu.DisplayMember = "TenCCNN";
-            sql = "Select * from TinHoc";
-            DataTable dt5 = Core.Core.GetData(sql);
+            DataTable dt5 = TinHocBUS.Instance.LoadAllTinHoc();
             cmbTinHoc.DataSource = dt5;
             cmbTinHoc.ValueMember = "TinHocID";
             cmbTinHoc.DisplayMember = "TenCCTH";
-            sql = "Select * from BangCap";
-            DataTable dt6 = Core.Core.GetData(sql);
+            DataTable dt6 = BangCapBUS.Instance.LoadAllBangCap();
             cmbBangCap.DataSource = dt6;
             cmbBangCap.ValueMember = "BangCapID";
             cmbBangCap.DisplayMember = "TenBangCap";
-            sql = "Select * from NhanVien";
-            DataTable dt7 = Core.Core.GetData(sql);
+            DataTable dt7 = NhanVienBUS.Instance.LoadAllNhanVien();
             cmbTenNV.DataSource = dt7;
             cmbTenNV.ValueMember = "NhanVienID";
             cmbTenNV.DisplayMember = "TenNV";
