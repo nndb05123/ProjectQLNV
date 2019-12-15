@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,9 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int LoaiQuyetDinhID = 0;
         void Load_DL()
         {
-            string sql = "Select * from LoaiQuyetDinh";
-            DataTable dt = Core.Core.GetData(sql);
-            grdLoaiQD.DataSource = dt;
+            grdLoaiQD.DataSource = LoaiQuyetDinhBUS.Instance.LoadAllLoaiQuyetDinh();
         }
         void Reset()
         {
@@ -66,6 +66,9 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            LoaiQuyetDinhDTO loaiQuyetDinhDTO = new LoaiQuyetDinhDTO();
+            loaiQuyetDinhDTO.LoaiQuyetDinhID = LoaiQuyetDinhID;
+            loaiQuyetDinhDTO.TenLoaiQuyetDinh = txtLoaiQD.Text.Trim();
             if (kt == 1)
             {
                 if (txtLoaiQD.Text == "")
@@ -74,8 +77,8 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into LoaiQuyetDinh(TenLoaiQuyetDinh) values(N'" + txtLoaiQD.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+                    
+                    if (LoaiQuyetDinhBUS.Instance.ThemLoaiQuyetDinh(loaiQuyetDinhDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -87,8 +90,7 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = "Update LoaiQuyetDinh set TenLoaiQuyetDinh =N'" + txtLoaiQD.Text + "' where LoaiQuyetDinhID ='" + LoaiQuyetDinhID + "'";
-                Core.Core.RunSql(sql);
+                LoaiQuyetDinhBUS.Instance.UpdateLoaiQuyetDinh(loaiQuyetDinhDTO);
                 Load_DL();
             }
             Reset();
@@ -97,16 +99,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from KhenThuongKyLuat where LoaiQuyetDinhID ='" + LoaiQuyetDinhID + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            LoaiQuyetDinhDTO loaiQuyetDinhDTO = new LoaiQuyetDinhDTO();
+            loaiQuyetDinhDTO.LoaiQuyetDinhID = LoaiQuyetDinhID;
+            DataTable dt = LoaiQuyetDinhBUS.Instance.LoadLoaiQuyetDinhFromHoSoNhanVien(loaiQuyetDinhDTO);
             if(dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong KhenThuongKyLuat");
             }
             else
             {
-                sql = "Delete LoaiQuyetDinh where LoaiQuyetDinhID ='" + LoaiQuyetDinhID + "'";
-                Core.Core.RunSql(sql);
+                LoaiQuyetDinhBUS.Instance.DeleteLoaiQuyetDinh(loaiQuyetDinhDTO);
                 Load_DL();
                 Reset();
             }

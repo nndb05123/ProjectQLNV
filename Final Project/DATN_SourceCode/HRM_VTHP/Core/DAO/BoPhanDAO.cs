@@ -25,7 +25,7 @@ namespace HRM_VTHP.Core.DAO
 
         public string LoadAllBoPhan()
         {
-            string sql = @"Select * from BoPhan";
+            string sql = "Select * from BoPhan";
             return sql;
         }
 

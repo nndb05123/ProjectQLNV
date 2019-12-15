@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,9 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int MoiQuanHeID = 0;
         void Load_DL()
         {
-            string sql = @"Select * from MoiQuanHe";
-            DataTable dt = Core.Core.GetData(sql);
-            grdMoiQuanHe.DataSource = dt;
+            grdMoiQuanHe.DataSource = MoiQuanHeBUS.Instance.LoadAllMoiQuanHe();
         }
         void Reset()
         {
@@ -60,6 +60,9 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            MoiQuanHeDTO moiQuanHeDTO = new MoiQuanHeDTO();
+            moiQuanHeDTO.MoiQuanHeID = MoiQuanHeID;
+            moiQuanHeDTO.TenMoiQuanHe = txtMoiQuanHe.Text.Trim();
             if(kt == 1)
             {
                 if (txtMoiQuanHe.Text == "")
@@ -68,8 +71,8 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into MoiQuanHe(TenMoiQuanHe) values(N'" + txtMoiQuanHe.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+                    
+                    if (MoiQuanHeBUS.Instance.ThemMoiQuanHe(moiQuanHeDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -82,8 +85,7 @@ namespace HRM_VTHP.DanhMuc
             }
             else
             {
-                string sql = "Update MoiQuanHe set TenMoiQuanHe = N'" + txtMoiQuanHe.Text + "' where MoiQuanHeID = '" + MoiQuanHeID + "'";
-                Core.Core.RunSql(sql);
+                MoiQuanHeBUS.Instance.UpdateMoiQuanHe(moiQuanHeDTO);
                 Load_DL();
             }
             Reset();
@@ -93,16 +95,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from NguoiThan where MoiQuanHeID = '" + MoiQuanHeID + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            MoiQuanHeDTO moiQuanHeDTO = new MoiQuanHeDTO();
+            moiQuanHeDTO.MoiQuanHeID = MoiQuanHeID;
+            DataTable dt = MoiQuanHeBUS.Instance.LoadMoiQuanHeFromHoSoNhanVien(moiQuanHeDTO);
             if(dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong NguoiThan");
             }
             else
             {
-                sql = "Delete MoiQuanHe where MoiQuanHeID = '" + MoiQuanHeID + "'";
-                Core.Core.RunSql(sql);
+                MoiQuanHeBUS.Instance.DeleteMoiQuanHe(moiQuanHeDTO);
                 Load_DL();
                 Reset();
             }

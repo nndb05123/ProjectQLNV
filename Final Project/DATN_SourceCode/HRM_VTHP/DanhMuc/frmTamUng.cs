@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,9 +22,7 @@ namespace HRM_VTHP.DanhMuc
         int TamUngID = 0;
         void Load_DL()
         {
-            string sql = "Select * from TamUng";
-            DataTable dt = Core.Core.GetData(sql);
-            grdTamUng.DataSource = dt;
+            grdTamUng.DataSource = TamUngBUS.Instance.LoadAllTamUng();
         }
         void Reset()
         {
@@ -60,7 +60,10 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if(kt == 1)
+            TamUngDTO tamUngDTO = new TamUngDTO();
+            tamUngDTO.TamUngID = TamUngID;
+            tamUngDTO.TenTamUng = txtTamUng.Text.Trim();
+            if (kt == 1)
             {
                 if (txtTamUng.Text == "")
                 {
@@ -68,22 +71,22 @@ namespace HRM_VTHP.DanhMuc
                 }
                 else
                 {
-                    string sql = "Insert into TamUng(TenTamUng) values(N'" + txtTamUng.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+                    
+                    if (TamUngBUS.Instance.ThemTamUng(tamUngDTO) == -1 )
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
 
                     else
                     {
+
                         Load_DL();
                     }
                 }
             }
             else
             {
-                string sql = "Update TamUng set TenTamUng =N'" + txtTamUng.Text + "' where TamUngID ='" + TamUngID + "'";
-                Core.Core.RunSql(sql);
+                TamUngBUS.Instance.UpdateTamUng(tamUngDTO);
                 Load_DL();
             }
             Reset();
@@ -92,16 +95,16 @@ namespace HRM_VTHP.DanhMuc
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from ChiTietTamUng where TamUngID ='" + TamUngID + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            TamUngDTO tamUngDTO = new TamUngDTO();
+            tamUngDTO.TamUngID = TamUngID;
+            DataTable dt = TamUngBUS.Instance.LoadTamUngFromHoSoNhanVien(tamUngDTO);
             if(dt.Rows.Count > 0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong ChiTietTamUng");
             }
             else
             {
-                sql = "Delete TamUng where TamUngID ='" + TamUngID + "'";
-                Core.Core.RunSql(sql);
+                TamUngBUS.Instance.DeleteTamUng(tamUngDTO);
                 Load_DL();
                 Reset();
             }
