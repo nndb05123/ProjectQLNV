@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,8 +20,7 @@ namespace HRM_VTHP.HeThong
 
         private void frmPhanQuyenNguoiDung_Load(object sender, EventArgs e)
         {
-            string sql = "Select * from BoPhan";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = BoPhanBUS.Instance.LoadAllBoPhan();
             cmbBoPhan.DataSource = dt;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
@@ -30,9 +30,7 @@ namespace HRM_VTHP.HeThong
         {
             cmbNhanVien.DataSource = null;
             string BoPhanID = cmbBoPhan.SelectedValue.ToString();
-            string sql = @"select a.NhanVienID, a.TenNV from NhanVien a 
-                            inner join NhanVienBoPhan b on a.NhanVienID = b.NhanVienID and b.BoPhanID = '" + BoPhanID + "'";
-            DataTable dtNhanVien = Core.Core.GetData(sql);
+            DataTable dtNhanVien = QuyenNguoiDungBUS.Instance.GetNhanVienFromBoPhan(BoPhanID);
             cmbNhanVien.DataSource = dtNhanVien;
             cmbNhanVien.ValueMember = "NhanVienID";
             cmbNhanVien.DisplayMember = "TenNV";
@@ -44,9 +42,7 @@ namespace HRM_VTHP.HeThong
             {
                 cmbNguoiDung.DataSource = null;
                 string NhanVienID = cmbNhanVien.SelectedValue.ToString();
-                string sql = @"select a.NguoiDungID, a.TenDangNhap from NguoiDung a 
-                           inner join NhanVien b on a.NhanVienID = b.NhanVienID and b.NhanVienID = '" + NhanVienID + "'";
-                DataTable dtNguoiDung = Core.Core.GetData(sql);
+                DataTable dtNguoiDung = QuyenNguoiDungBUS.Instance.GetNguoiDungFromNhanVien(NhanVienID);
                 cmbNguoiDung.DataSource = dtNguoiDung;
                 cmbNguoiDung.ValueMember = "NguoiDungID";
                 cmbNguoiDung.DisplayMember = "TenDangNhap";
@@ -57,32 +53,28 @@ namespace HRM_VTHP.HeThong
         {
             try
             {
+                string NguoiDungID = cmbNguoiDung.SelectedValue.ToString();
                 string sql = "delete from QuyenNguoiDung where NguoiDungID = '" + cmbNguoiDung.SelectedValue + "'";
-                Core.Core.RunSql(sql);
+                QuyenNguoiDungBUS.Instance.DeleteQuyenNguoiDung(NguoiDungID);
                 if (cbQLHT.Checked == true)
                 {
-                    sql = "Insert into QuyenNguoiDung(NguoiDungID, NghiepVuID) values ('" + cmbNguoiDung.SelectedValue + "', '1')";
-                    Core.Core.RunSql(sql);
+                    QuyenNguoiDungBUS.Instance.ThemQuyenNguoiDung(NguoiDungID, "1");
                 }
                 if (cbQLDanhMuc.Checked == true)
                 {
-                    sql = "Insert into QuyenNguoiDung(NguoiDungID, NghiepVuID) values ('" + cmbNguoiDung.SelectedValue + "', '2')";
-                    Core.Core.RunSql(sql);
+                    QuyenNguoiDungBUS.Instance.ThemQuyenNguoiDung(NguoiDungID, "2");
                 }
                 if (cbQLNhanSu.Checked == true)
                 {
-                    sql = "Insert into QuyenNguoiDung(NguoiDungID, NghiepVuID) values ('" + cmbNguoiDung.SelectedValue + "', '3')";
-                    Core.Core.RunSql(sql);
+                    QuyenNguoiDungBUS.Instance.ThemQuyenNguoiDung(NguoiDungID, "3");
                 }
                 if (cbQLTienLuong.Checked == true)
                 {
-                    sql = "Insert into QuyenNguoiDung(NguoiDungID, NghiepVuID) values ('" + cmbNguoiDung.SelectedValue + "', '4')";
-                    Core.Core.RunSql(sql);
+                    QuyenNguoiDungBUS.Instance.ThemQuyenNguoiDung(NguoiDungID, "4");
                 }
                 if (cbTKBaoCao.Checked == true)
                 {
-                    sql = "Insert into QuyenNguoiDung(NguoiDungID, NghiepVuID) values ('" + cmbNguoiDung.SelectedValue + "', '5')";
-                    Core.Core.RunSql(sql);
+                    QuyenNguoiDungBUS.Instance.ThemQuyenNguoiDung(NguoiDungID, "5");
                 }
                 MessageBox.Show("Lưu thành công");
             }

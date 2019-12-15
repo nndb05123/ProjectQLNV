@@ -55,5 +55,6 @@ namespace HRM_VTHP.Core.DAO
             string sql = "Delete NhanVien where NhanVienID = '" + nhanVienID + "'";
             return sql;
         }
+
     }
 }

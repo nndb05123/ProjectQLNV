@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,20 +28,19 @@ namespace HRM_VTHP.HeThong
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from NguoiDung where TenDangNhap = '" + txtTenDangNhap.Text + "' and MatKhau = '" + txtMatKhauCu.Text + "'";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = NguoiDungBUS.Instance.GetNguoiDungFromTenDangNhap(txtTenDangNhap.Text.Trim());
             errorProvider1.Clear();
-            if(txtTenDangNhap.Text=="" || txtMatKhauCu.Text==""|| txtMatKhauMoi.Text == "" || txtNhapLai.Text == "")
+            if (txtTenDangNhap.Text=="" || txtMatKhauCu.Text==""|| txtMatKhauMoi.Text == "" || txtNhapLai.Text == "")
             {
                 MessageBox.Show("Bạn chưa nhập đủ dữ liệu");
             }
             
-            else if (dt.Rows.Count >0)
+            //else if (dt.Rows.Count >0)
+            else if (dt.Rows[0]["MatKhau"].ToString() == Core.Security.EncryptMd5( txtMatKhauCu.Text.Trim()))
             {
                 if(txtMatKhauMoi.Text==txtNhapLai.Text)
                 {
-                    sql = "Update NguoiDung set MatKhau='"+txtMatKhauMoi.Text+"' where TenDangNhap='"+txtTenDangNhap.Text+"' and MatKhau='"+txtMatKhauCu.Text+"' ";
-                    Core.Core.RunSql(sql);
+                    NguoiDungBUS.Instance.UpdateMatKhau(txtTenDangNhap.Text.Trim(), txtMatKhauMoi.Text.Trim());
                     MessageBox.Show("Đã thay đổi mật khẩu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
