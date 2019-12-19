@@ -65,31 +65,37 @@
             // 
             // cmbNguoiDung
             // 
+            this.cmbNguoiDung.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbNguoiDung.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbNguoiDung.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNguoiDung.FormattingEnabled = true;
             this.cmbNguoiDung.Location = new System.Drawing.Point(118, 98);
             this.cmbNguoiDung.Name = "cmbNguoiDung";
-            this.cmbNguoiDung.Size = new System.Drawing.Size(175, 22);
+            this.cmbNguoiDung.Size = new System.Drawing.Size(175, 30);
             this.cmbNguoiDung.TabIndex = 5;
             this.cmbNguoiDung.SelectedIndexChanged += new System.EventHandler(this.cmbNguoiDung_SelectedIndexChanged);
             // 
             // cmbNhanVien
             // 
+            this.cmbNhanVien.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbNhanVien.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbNhanVien.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNhanVien.FormattingEnabled = true;
             this.cmbNhanVien.Location = new System.Drawing.Point(118, 60);
             this.cmbNhanVien.Name = "cmbNhanVien";
-            this.cmbNhanVien.Size = new System.Drawing.Size(175, 22);
+            this.cmbNhanVien.Size = new System.Drawing.Size(175, 30);
             this.cmbNhanVien.TabIndex = 4;
             this.cmbNhanVien.SelectedIndexChanged += new System.EventHandler(this.cmbNhanVien_SelectedIndexChanged);
             // 
             // cmbBoPhan
             // 
+            this.cmbBoPhan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbBoPhan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbBoPhan.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBoPhan.FormattingEnabled = true;
             this.cmbBoPhan.Location = new System.Drawing.Point(118, 25);
             this.cmbBoPhan.Name = "cmbBoPhan";
-            this.cmbBoPhan.Size = new System.Drawing.Size(175, 22);
+            this.cmbBoPhan.Size = new System.Drawing.Size(175, 30);
             this.cmbBoPhan.TabIndex = 3;
             this.cmbBoPhan.SelectedIndexChanged += new System.EventHandler(this.cmbBoPhan_SelectedIndexChanged);
             // 
@@ -99,7 +105,7 @@
             this.lblNguoiDung.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNguoiDung.Location = new System.Drawing.Point(17, 101);
             this.lblNguoiDung.Name = "lblNguoiDung";
-            this.lblNguoiDung.Size = new System.Drawing.Size(71, 14);
+            this.lblNguoiDung.Size = new System.Drawing.Size(103, 22);
             this.lblNguoiDung.TabIndex = 2;
             this.lblNguoiDung.Text = "Người dùng";
             // 
@@ -109,7 +115,7 @@
             this.lblNhanVien.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNhanVien.Location = new System.Drawing.Point(17, 64);
             this.lblNhanVien.Name = "lblNhanVien";
-            this.lblNhanVien.Size = new System.Drawing.Size(61, 14);
+            this.lblNhanVien.Size = new System.Drawing.Size(89, 22);
             this.lblNhanVien.TabIndex = 1;
             this.lblNhanVien.Text = "Nhân viên";
             // 
@@ -119,7 +125,7 @@
             this.lblBoPhan.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBoPhan.Location = new System.Drawing.Point(17, 28);
             this.lblBoPhan.Name = "lblBoPhan";
-            this.lblBoPhan.Size = new System.Drawing.Size(52, 14);
+            this.lblBoPhan.Size = new System.Drawing.Size(76, 22);
             this.lblBoPhan.TabIndex = 0;
             this.lblBoPhan.Text = "Bộ phận";
             // 
@@ -143,7 +149,7 @@
             this.cbTKBaoCao.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTKBaoCao.Location = new System.Drawing.Point(21, 165);
             this.cbTKBaoCao.Name = "cbTKBaoCao";
-            this.cbTKBaoCao.Size = new System.Drawing.Size(126, 18);
+            this.cbTKBaoCao.Size = new System.Drawing.Size(179, 26);
             this.cbTKBaoCao.TabIndex = 4;
             this.cbTKBaoCao.Text = "Thống kê báo cáo";
             this.cbTKBaoCao.UseVisualStyleBackColor = true;
@@ -154,7 +160,7 @@
             this.cbQLTienLuong.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbQLTienLuong.Location = new System.Drawing.Point(21, 128);
             this.cbQLTienLuong.Name = "cbQLTienLuong";
-            this.cbQLTienLuong.Size = new System.Drawing.Size(127, 18);
+            this.cbQLTienLuong.Size = new System.Drawing.Size(183, 26);
             this.cbQLTienLuong.TabIndex = 3;
             this.cbQLTienLuong.Text = "Quản lý tiền lương";
             this.cbQLTienLuong.UseVisualStyleBackColor = true;
@@ -165,7 +171,7 @@
             this.cbQLNhanSu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbQLNhanSu.Location = new System.Drawing.Point(21, 89);
             this.cbQLNhanSu.Name = "cbQLNhanSu";
-            this.cbQLNhanSu.Size = new System.Drawing.Size(115, 18);
+            this.cbQLNhanSu.Size = new System.Drawing.Size(167, 26);
             this.cbQLNhanSu.TabIndex = 2;
             this.cbQLNhanSu.Text = "Quản lý nhân sự";
             this.cbQLNhanSu.UseVisualStyleBackColor = true;
@@ -176,7 +182,7 @@
             this.cbQLDanhMuc.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbQLDanhMuc.Location = new System.Drawing.Point(21, 55);
             this.cbQLDanhMuc.Name = "cbQLDanhMuc";
-            this.cbQLDanhMuc.Size = new System.Drawing.Size(125, 18);
+            this.cbQLDanhMuc.Size = new System.Drawing.Size(181, 26);
             this.cbQLDanhMuc.TabIndex = 1;
             this.cbQLDanhMuc.Text = "Quản lý danh mục";
             this.cbQLDanhMuc.UseVisualStyleBackColor = true;
@@ -187,7 +193,7 @@
             this.cbQLHT.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbQLHT.Location = new System.Drawing.Point(21, 20);
             this.cbQLHT.Name = "cbQLHT";
-            this.cbQLHT.Size = new System.Drawing.Size(122, 18);
+            this.cbQLHT.Size = new System.Drawing.Size(174, 26);
             this.cbQLHT.TabIndex = 0;
             this.cbQLHT.Text = "Quản lý hệ thống";
             this.cbQLHT.UseVisualStyleBackColor = true;
@@ -196,7 +202,7 @@
             // 
             this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.Appearance.Options.UseFont = true;
-            this.btnLuu.Image = ((System.Drawing.Image)(resources.GetObject("btnLuu.Image")));
+            this.btnLuu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLuu.ImageOptions.Image")));
             this.btnLuu.Location = new System.Drawing.Point(14, 382);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(93, 33);
@@ -208,7 +214,7 @@
             // 
             this.btnThoat.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThoat.Appearance.Options.UseFont = true;
-            this.btnThoat.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.Image")));
+            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
             this.btnThoat.Location = new System.Drawing.Point(231, 382);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(100, 33);
@@ -218,7 +224,7 @@
             // 
             // frmPhanQuyenNguoiDung
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(340, 438);
             this.Controls.Add(this.btnThoat);
