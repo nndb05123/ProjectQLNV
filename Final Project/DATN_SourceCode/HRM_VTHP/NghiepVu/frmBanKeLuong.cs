@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -173,13 +175,10 @@ namespace HRM_VTHP.NghiepVu
                     {
                         if (row.Row["TrangThai"].ToString() == "1")
                         {
-                            string ChiTietBanKeLuongID = row.Row["ChiTietBanKeLuongID"].ToString();
-
-                            string sql = @"Update ChiTietBanKeLuong Set TrangThai = 2 where ChiTietBanKeLuongID = '" + ChiTietBanKeLuongID + "'";
-                            Core.Core.RunSql(sql);
-
-                            sql = @"update ChiTietTamUng set TrangThaiID = 2 Where NhanVienID = '"+ row.Row["NhanVienID"].ToString() + "' And ThangTamUng = '"+ row.Row["ThangTamUng"].ToString() + "'";
-                            Core.Core.RunSql(sql);
+                            ChiTietBanKeLuongDTO chiTietBanKeLuongDTO = new ChiTietBanKeLuongDTO();
+                            chiTietBanKeLuongDTO.ChiTietBanKeLuongID = int.Parse(row.Row["ChiTietBanKeLuongID"].ToString());
+                            ChiTietBanKeLuongBUS.Instance.UpdateStatusChiTietBanKeLuong(chiTietBanKeLuongDTO);
+                            ChiTietBanKeLuongBUS.Instance.UpdateStatusChiTietBanKeLuongWithNhanVienAndTamUng(int.Parse(row.Row["NhanVienID"].ToString()), int.Parse(row.Row["ThangTamUng"].ToString()));
                             dem++;
                         }
 
