@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,16 +22,7 @@ namespace HRM_VTHP.NghiepVu
         int NhanVienID = 0;
         void Load_DL()
         {
-            string sql = @"SELECT DISTINCT BP.BoPhanID, BP.TenBoPhan, CDNV.TenChucDanh, CDNV.TenNV, NVBP.NhanVienID, CDNV.ChucDanhID
-                           FROM NhanVienBoPhan NVBP
-                           INNER JOIN BoPhan BP ON NVBP.BoPhanID = BP.BoPhanID
-                           INNER JOIN 
-	                       (SELECT LCD.ChucDanhID, LCD.TenChucDanh, NVCD.NhanVienID, NV.TenNV
-	                        FROM NhanVienChucDanh NVCD
-	                        INNER JOIN LuongChucDanh LCD ON NVCD.ChucDanhID = LCD.ChucDanhID
-	                        INNER JOIN NhanVien NV ON NVCD.NhanVienID = NV.NhanVienID) 
-		                    AS CDNV ON NVBP.NhanVienID = CDNV.NhanVienID";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = NhanVienChucDanh.Instance.LoadDaTa_NhanVienChucDanh();
             grdNhanVienChucDanh.DataSource = dt;
         }
         void Reset()
@@ -46,13 +39,14 @@ namespace HRM_VTHP.NghiepVu
 
         private void frmNhanVienChucDanh_Load(object sender, EventArgs e)
         {
-            string sql = "Select * from BoPhan";
-            DataTable dt1 = Core.Core.GetData(sql);
+          
+            DataTable dt1 = NhanVienChucDanh.Instance.Load_BoPhan();
             cmbBoPhan.DataSource = dt1;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
-            sql = "Select * from LuongChucDanh";
-            DataTable dt2 = Core.Core.GetData(sql);
+           
+
+            DataTable dt2 = NhanVienChucDanh.Instance.Load_LuongChucDanh();
             cmbTenChucDanh.DataSource = dt2;
             cmbTenChucDanh.ValueMember = "ChucDanhID";
             cmbTenChucDanh.DisplayMember = "TenChucDanh";
@@ -88,27 +82,27 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            NhanVienChucDanhDTO nhanVienChucDanhDTO = new NhanVienChucDanhDTO();
+            nhanVienChucDanhDTO.NhanVienID = int.Parse(cmbNhanVien.SelectedValue.ToString());
+            nhanVienChucDanhDTO.ChucDanhID = int.Parse(cmbTenChucDanh.SelectedValue.ToString());
             if (kt == 1)
             {
-                if(cmbNhanVien.SelectedValue.ToString() != "")
+                if(cmbNhanVien.SelectedValue.ToString() == "")
                 {
                     MessageBox.Show("Không đc phép nhập trùng");
                 }
-                else {  string sql = "Insert into NhanVienChucDanh(NhanVienID, ChucDanhID) values ('" + cmbNhanVien.SelectedValue + "', '" + cmbTenChucDanh.SelectedValue + "')";
-                if (Core.Core.RunSql(sql) == -1)
+                else if(NhanVienChucDanh.Instance.Add_NhanVienChucDanh(nhanVienChucDanhDTO) == -1)
                 {
                     MessageBox.Show("Lỗi khi thêm mới");
-                }
+                }         
                 else
                 {
                     Load_DL();
-                }}
-               
+                }      
             }
             else
             {
-                string sql = "Update NhanVienChucDanh set NhanVienID ='" + cmbNhanVien.SelectedValue + "', ChucDanhID = '" + cmbTenChucDanh.SelectedValue + "' where NhanVienID = '" + cmbNhanVien.SelectedValue + "'";
-                Core.Core.RunSql(sql);
+                NhanVienChucDanh.Instance.Update_NhanVienChucDanh(nhanVienChucDanhDTO);
                 Load_DL();
             }
             Reset();
@@ -121,8 +115,11 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Delete NhanVienChucDanh where NhanVienID = '" + cmbNhanVien.SelectedValue + "' AND ChucDanhID = '"+cmbTenChucDanh.SelectedValue+"'";
-            Core.Core.RunSql(sql);
+            NhanVienChucDanhDTO nhanVienChucDanhDTO = new NhanVienChucDanhDTO();
+            nhanVienChucDanhDTO.NhanVienID = int.Parse(cmbNhanVien.SelectedValue.ToString());
+            nhanVienChucDanhDTO.ChucDanhID = int.Parse(cmbTenChucDanh.SelectedValue.ToString());
+            NhanVienChucDanh.Instance.Delete_NhanVienChucDanh(nhanVienChucDanhDTO);
+
             Load_DL();
             Reset();
         }
@@ -139,8 +136,7 @@ namespace HRM_VTHP.NghiepVu
         private void cmbBoPhan_SelectedIndexChanged(object sender, EventArgs e)
         {
             string BoPhanID = cmbBoPhan.SelectedValue.ToString();
-            string sql = "select a.NhanVienID, a.TenNV from NhanVien a INNER JOIN NhanVienBoPhan b on a.NhanVienID = b.NhanVienID and b.BoPhanID = '"+BoPhanID+"'";
-            DataTable dtNhanVien = Core.Core.GetData(sql);
+            DataTable dtNhanVien = NhanVienChucDanh.Instance.Load_NhanVienBoPhan(BoPhanID);
             cmbNhanVien.DataSource = dtNhanVien;
             cmbNhanVien.ValueMember = "NhanVienID";
             cmbNhanVien.DisplayMember = "TenNV";

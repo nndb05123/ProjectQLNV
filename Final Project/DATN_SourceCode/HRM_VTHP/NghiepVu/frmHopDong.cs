@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,12 +22,7 @@ namespace HRM_VTHP.NghiepVu
         int HopDongID = 0;
         void Load_DL()
         {
-            string sql = @"select f.TenBoPhan, e.NhanVienID, e.HopDongID, e.LoaiHopDongID, e.TenNV, e.MaHopDong, e.TenLoaiHopDong, e.NgayKy, e.NgayHieuLuc, e.NgayHetHan, e.NgayKetThuc, e.BoPhanID, e.TrangThai from BoPhan f inner join
-                           (select a.NhanVienID, a.TrangThai, a.HopDongID, a.LoaiHopDongID, a.MaHopDong, a.NgayHetHan, a.NgayHieuLuc, a.NgayKetThuc, a.NgayKy, b.TenLoaiHopDong, c.TenNV, d.BoPhanID from HopDong a
-                           inner join LoaiHopDong b on a.LoaiHopDongID = b.LoaiHopDongID 
-                           inner join NhanVien c on a.NhanVienID = c.NhanVienID
-                           inner join NhanVienBoPhan d on a.NhanVienID = d.NhanVienID) as e on f.BoPhanID = e.BoPhanID";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = HopDongBUS.Instance.LoadData_HopDong();
             grdHopDong.DataSource = dt;
         }
         void Reset()
@@ -49,13 +46,12 @@ namespace HRM_VTHP.NghiepVu
 
         private void frmHopDong_Load(object sender, EventArgs e)
         {
-            string sql = "Select * from LoaiHopDong";
-            DataTable dt = Core.Core.GetData(sql);
+           
+            DataTable dt = HopDongBUS.Instance.Load_LoaiHopDong();
             cmbTenLoaiHopDong.DataSource = dt;
             cmbTenLoaiHopDong.ValueMember = "LoaiHopDongID";
             cmbTenLoaiHopDong.DisplayMember = "TenLoaiHopDong";
-            sql = "Select * from BoPhan";
-            DataTable dt1 = Core.Core.GetData(sql);
+            DataTable dt1 = HopDongBUS.Instance.Load_BoPhan();
             cmbBoPhan.DataSource = dt1;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
@@ -66,8 +62,8 @@ namespace HRM_VTHP.NghiepVu
         private void cmbBoPhan_SelectedIndexChanged(object sender, EventArgs e)
         {
             string BoPhanID = cmbBoPhan.SelectedValue.ToString();
-            string sql = "select a.NhanVienID, a.TenNV from NhanVien a INNER JOIN NhanVienBoPhan b on a.NhanVienID = b.NhanVienID and b.BoPhanID = '" + BoPhanID + "'";
-            DataTable dtNhanVien = Core.Core.GetData(sql);
+        
+            DataTable dtNhanVien = HopDongBUS.Instance.Load_NhanVienBoPhan(BoPhanID);
             cmbNhanVien.DataSource = dtNhanVien;
             cmbNhanVien.ValueMember = "NhanVienID";
             cmbNhanVien.DisplayMember = "TenNV";
@@ -119,10 +115,18 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            HopDongDTO hopDongDTO = new HopDongDTO();
+            hopDongDTO.MaHopDong = txtMaHopDong.Text;
+            hopDongDTO.LoaiHopDongID = int.Parse(cmbTenLoaiHopDong.SelectedValue.ToString());
+            hopDongDTO.NgayKy = dtpNgayKy.Value;
+            hopDongDTO.NgayHieuLuc = dtpNgayHieuLuc.Value;
+            hopDongDTO.NgayHetHan = dtpNgayHetHan.Value;
+            hopDongDTO.NhanVienID = int.Parse(cmbNhanVien.SelectedValue.ToString());
+            hopDongDTO.NgayKetThuc = dtpNgayKetThuc.Value;
+            hopDongDTO.TrangThai = cbTrangThai.Checked;
             if (kt == 1)
             {
-                string sql = "Insert into HopDong( MaHopDong, LoaiHopDongID, NgayKy, NgayHieuLuc, NgayHetHan, NhanVienID, NgayKetThuc, TrangThai) values ('" + txtMaHopDong.Text + "', '" + cmbTenLoaiHopDong.SelectedValue + "', '" + dtpNgayKy.Value + "', '" + dtpNgayHieuLuc.Value + "', '"+dtpNgayHetHan.Value+"', '"+cmbNhanVien.SelectedValue+"', '"+dtpNgayKetThuc.Value+"', '"+cbTrangThai.Checked+"')";
-                if (Core.Core.RunSql(sql) == -1)
+                if (HopDongBUS.Instance.Add_HopDong(hopDongDTO) == -1)
                 {
                     MessageBox.Show("Lỗi khi thêm mới");
                 }
@@ -133,8 +137,7 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update HopDong set MaHopDong ='" + txtMaHopDong.Text + "', LoaiHopDongID = '" + cmbTenLoaiHopDong.SelectedValue + "', NgayKy = '" + dtpNgayKy.Value + "', NgayHieuLuc = '" + dtpNgayHieuLuc.Value + "', NgayHetHan = '"+dtpNgayHetHan.Value+"', NgayKetThuc = '"+dtpNgayKetThuc.Value+"', NhanVienID = '"+cmbNhanVien.SelectedValue+"', TrangThai = '"+cbTrangThai.Checked+"' where HopDongID = '" + HopDongID + "'";
-                Core.Core.RunSql(sql);
+                HopDongBUS.Instance.Update_HopDong(hopDongDTO, HopDongID);
                 Load_DL();
             }
             Reset();
@@ -158,8 +161,7 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Delete HopDong where HopDongID = '" + HopDongID + "'";
-            Core.Core.RunSql(sql);
+            HopDongBUS.Instance.Delete_HopDong(HopDongID);
             Load_DL();
             Reset();
         }

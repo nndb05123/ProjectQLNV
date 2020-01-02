@@ -10,7 +10,7 @@ namespace HRM_VTHP.Core.DTO
     {
         public int PhieuTamUngID { get; set; }
         public string MaPhieuTamUng { get; set; }
-        public char ThangTamUng { get; set; }
+        public string ThangTamUng { get; set; }
         public int TamUngID { get; set; }
         public int NhanVienID { get; set; }
         public DateTime NgayLap { get; set; }

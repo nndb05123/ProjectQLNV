@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
+using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,8 +33,8 @@ namespace HRM_VTHP.NghiepVu
         {
             try
             {
-                string sql = @"Select BoPhanID, TenBoPhan From BoPhan Order by TenBoPhan";
-                DataTable dt = Core.Core.GetData(sql);
+
+                DataTable dt = ChamCongBUS.Instance.LoadData_BoPhan();
                 cmbBoPhan.DataSource = dt;
                 cmbBoPhan.ValueMember = "BoPhanID";
                 cmbBoPhan.DisplayMember = "TenBoPhan";
@@ -56,12 +58,10 @@ namespace HRM_VTHP.NghiepVu
         {
             try
             {
-                string sql = @"select a.BoPhanID, a.NhanVienID, b.MaNV, b.TenNV, c.ChamCongID,c.NgayChamCong, c.NgayCongChuan,c.NgayDiLam,c.NgayKhongLuong, c.NgayNghiLe, c.NgayNghiPhepTinhLuong, c.NgayTinhLuong,
-		                    c.ChamCongID, c.GhiChu, c.TrangThai, c.Thang
-                            from NhanVienBoPhan a inner join NhanVien b on a.NhanVienID = b.NhanVienID
-                            left join ChamCong c on c.BoPhanID = a.BoPhanID and c.NhanVienID = a.NhanVienID and c.Thang = '" + dtpThang.Value.ToString("yyyyMM") + @"'
-                            Where a.BoPhanID = '" + cmbBoPhan.SelectedValue + "'";
-                DataTable dt = Core.Core.GetData(sql);
+                ChamCongDTO chamCongDTO = new ChamCongDTO();
+                chamCongDTO.Thang = dtpThang.Value.ToString("yyyyMM");
+                chamCongDTO.BoPhanID = int.Parse(cmbBoPhan.SelectedValue.ToString());
+                DataTable dt = ChamCongBUS.Instance.LoadData_Show_ChamCong(chamCongDTO);
                 bindingSource1.DataSource = dt;
 
                 // Customize Cell Status

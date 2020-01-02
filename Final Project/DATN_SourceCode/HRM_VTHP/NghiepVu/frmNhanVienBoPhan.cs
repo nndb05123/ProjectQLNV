@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,10 +23,8 @@ namespace HRM_VTHP.NghiepVu
         //int BoPhanID = 0;
         void Load_DL()
         {
-            string sql = @"Select a.NhanVienID, a.BoPhanID, b.TenNV, c.TenBoPhan
-                            from ((NhanVienBoPhan a inner join NhanVien b on a.NhanVienID = b.NhanVienID)
-                            inner join BoPhan c on a.BoPhanID = c.BoPhanID)";
-            DataTable dt = Core.Core.GetData(sql);
+
+            DataTable dt = NhanVienBoPhanBUS.Instance.LoadAllNhanVien();
             grdNhanVienBoPhan.DataSource = dt;
         }
         void Reset()
@@ -42,13 +42,13 @@ namespace HRM_VTHP.NghiepVu
         {
             Load_DL();
             Reset();
-            string sql = "Select * from NhanVien";
-            DataTable dt = Core.Core.GetData(sql);
+
+            DataTable dt = NhanVienBoPhanBUS.Instance.LoadData_NhanVien();
             cmbTenNV.DataSource = dt;
             cmbTenNV.ValueMember = "NhanVienID";
             cmbTenNV.DisplayMember = "TenNV";
-            sql = "Select * from BoPhan";
-            DataTable dt1 = Core.Core.GetData(sql);
+           
+            DataTable dt1 = NhanVienBoPhanBUS.Instance.LoadData_BoPhan();
             cmbBoPhan.DataSource = dt1;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
@@ -85,10 +85,14 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if(kt == 1)
+            NhanVienBoPhanDTO nhanVienBoPhanDTO = new NhanVienBoPhanDTO();
+            nhanVienBoPhanDTO.NhanVienID = int.Parse(cmbTenNV.SelectedValue.ToString());
+            nhanVienBoPhanDTO.BoPhanID = int.Parse(cmbBoPhan.SelectedValue.ToString());
+
+            if (kt == 1)
             {
-                string sql = "Insert into NhanVienBoPhan(NhanVienID, BoPhanID) values ('" + cmbTenNV.SelectedValue + "', '" + cmbBoPhan.SelectedValue + "')";
-                if(Core.Core.RunSql(sql) == -1)
+              
+                if(NhanVienBoPhanBUS.Instance.Add_NhanVien_BoPhan(nhanVienBoPhanDTO) == -1)
                 {
                     MessageBox.Show("Lỗi khi thêm mới");
                 }
@@ -99,8 +103,8 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update NhanVienBoPhan set NhanVienID ='" + cmbTenNV.SelectedValue + "', BoPhanID = '" + cmbBoPhan.SelectedValue + "' where NhanVienID = '" + cmbTenNV.SelectedValue + "'";
-                Core.Core.RunSql(sql);
+
+                NhanVienBoPhanBUS.Instance.Add_NhanVien_BoPhan(nhanVienBoPhanDTO);
                 Load_DL();
             }
             Reset();
@@ -117,16 +121,18 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from NhanVienChucDanh where NhanVienID = '"+NhanVienID+"'";
-            DataTable dtNVCD = Core.Core.GetData(sql);
+
+            DataTable dtNVCD = NhanVienBoPhanBUS.Instance.Load_NhanVienChucDanh(NhanVienID);
             if (dtNVCD.Rows.Count > 0)
             {
                 MessageBox.Show("Đã giao nhân viên về chức danh");
             }
             else
             {
-                sql = "Delete NhanVienBoPhan where NhanVienID = '" + cmbTenNV.SelectedValue + "' AND BoPhanID = '"+cmbBoPhan.SelectedValue+"'";
-                Core.Core.RunSql(sql);
+                NhanVienBoPhanDTO nhanVienBoPhanDTO = new NhanVienBoPhanDTO();
+                nhanVienBoPhanDTO.NhanVienID = int.Parse(cmbTenNV.SelectedValue.ToString());
+                nhanVienBoPhanDTO.BoPhanID = int.Parse(cmbBoPhan.SelectedValue.ToString());
+                NhanVienBoPhanBUS.Instance.Delete_NhanVien_BoPhan(nhanVienBoPhanDTO);
                 Load_DL();
             }
             Reset();

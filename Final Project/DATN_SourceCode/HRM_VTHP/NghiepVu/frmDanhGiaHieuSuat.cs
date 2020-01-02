@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,10 +23,8 @@ namespace HRM_VTHP.NghiepVu
         int DanhGiaHieuSuatID = 0;
         void Load_DL()
         {
-            string sql = @"select a.NhanVienID, b.TenNV, a.HieuSuat, a.Thang, a.DanhGiaHieuSuatID, c.BoPhanID from DanhGiaHieuSuat a 
-                           inner join NhanVien b on a.NhanVienID = b.NhanVienID
-                           inner join NhanVienBoPhan c on a.NhanVienID = c.NhanVienID";
-            DataTable dt = Core.Core.GetData(sql);
+
+            DataTable dt = DanhGiaHieuSuatBUS.Instance.LoadData_DanhGiaHieuSuat();
             grdDanhGiaHieuSuat.DataSource = dt;
         }
         void Reset()
@@ -86,12 +86,16 @@ namespace HRM_VTHP.NghiepVu
         }
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            DanhGiaHieuSuatDTO danhGiaHieuSuatDTO = new DanhGiaHieuSuatDTO();
+            danhGiaHieuSuatDTO.Thang = dtpThang.Value.ToString("yyyyMM");
+            danhGiaHieuSuatDTO.NhanVienID = int.Parse(cmbNhanVien.SelectedValue.ToString());
+            danhGiaHieuSuatDTO.HieuSuat = float.Parse(txtHieuSuatThang.Text.ToString());
             if (kt == 1)
             {
                 if(validateHieuSuat())
                 {
-                    string sql = "Insert into DanhGiaHieuSuat(Thang, NhanVienID, HieuSuat) values ('" + dtpThang.Value.ToString("yyyyMM") + "', '" + cmbNhanVien.SelectedValue + "', '" + txtHieuSuatThang.Text + "')";
-                    if (Core.Core.RunSql(sql) == -1)
+               
+                    if (DanhGiaHieuSuatBUS.Instance.Add_DanhGiaHieuSuat(danhGiaHieuSuatDTO) == -1)
                     {
                         MessageBox.Show("Lỗi khi thêm mới");
                     }
@@ -108,8 +112,8 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update DanhGiaHieuSuat set NhanVienID ='" + cmbNhanVien.SelectedValue + "', Thang = '" + dtpThang.Value.ToString("yyyyMM") + "', HieuSuat = '" + txtHieuSuatThang.Text + "' where DanhGiaHieuSuatID = '" + DanhGiaHieuSuatID + "'";
-                Core.Core.RunSql(sql);
+
+                DanhGiaHieuSuatBUS.Instance.Update_DanhGiaHieuSuat(danhGiaHieuSuatDTO, DanhGiaHieuSuatID);
                 Load_DL();
             }
             Reset();
@@ -122,8 +126,8 @@ namespace HRM_VTHP.NghiepVu
 
         private void frmDanhGiaHieuSuat_Load(object sender, EventArgs e)
         {
-            string sql = "select * from BoPhan";
-            DataTable dt = Core.Core.GetData(sql);
+
+            DataTable dt = BoPhanBUS.Instance.LoadAllBoPhan();
             cmbBoPhan.DataSource = dt;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
@@ -134,8 +138,8 @@ namespace HRM_VTHP.NghiepVu
         private void cmbBoPhan_SelectedIndexChanged(object sender, EventArgs e)
         {
             string BoPhanID = cmbBoPhan.SelectedValue.ToString();
-            string sql = "select a.NhanVienID, a.TenNV from NhanVien a INNER JOIN NhanVienBoPhan b on a.NhanVienID = b.NhanVienID and b.BoPhanID = '" + BoPhanID + "'";
-            DataTable dtNhanVien = Core.Core.GetData(sql);
+
+            DataTable dtNhanVien = HopDongBUS.Instance.Load_NhanVienBoPhan(BoPhanID);
             cmbNhanVien.DataSource = dtNhanVien;
             cmbNhanVien.ValueMember = "NhanVienID";
             cmbNhanVien.DisplayMember = "TenNV";
@@ -143,8 +147,7 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Delete DanhGiaHieuSuat where DanhGiaHieuSuatID = '" + DanhGiaHieuSuatID + "'";
-            Core.Core.RunSql(sql);
+            DanhGiaHieuSuatBUS.Instance.Delete_DanhGiaHieuSuat(DanhGiaHieuSuatID);
             Load_DL();
             Reset();
         }

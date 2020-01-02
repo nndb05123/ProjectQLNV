@@ -9,6 +9,7 @@ namespace HRM_VTHP.Core.DTO
     class NguoiThanDTO
     {
         public int NguoiThanID { get; set; }
+        public string TenNguoiThan { get; set; }
         public int NhanVienID { get; set; }
         public int MoiQuanHeID { get; set; }
         public string NgheNghiep { get; set; }

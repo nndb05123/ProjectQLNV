@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,12 +22,11 @@ namespace HRM_VTHP.NghiepVu
         int NguoiThanID = 0;
         void Load_DL()
         {
-            string sql = @"select a.NhanVienID, a.NguoiThanID, b.TenNV, b.MaNV, c.MoiQuanHeID, c.TenMoiQuanHe, a.TenNguoiThan, a.NgheNghiep, a.SDT, a.DiaChi, d.BoPhanID from NguoiThan a 
-                           inner join NhanVien b on a.NhanVienID = b.NhanVienID
-                           inner join MoiQuanHe c on a.MoiQuanHeID = c.MoiQuanHeID
-                           inner join NhanVienBoPhan d on a.NhanVienID = d.NhanVienID";
-            DataTable dt = Core.Core.GetData(sql);
-            grdQuanlinhanthan.DataSource = dt;
+            //Chú ý cách t làm
+            //oke
+            //Bên form nhân viên là đã format r
+            //sử dụng mô hình ba lớp: DAO: lưu những câu query, BUS: excute những câu query
+            grdQuanlinhanthan.DataSource = NguoiThanBUS.Instance.LoadAllThanNhan();
         }
         void Reset()
         {
@@ -49,25 +50,28 @@ namespace HRM_VTHP.NghiepVu
 
         private void frmQuanLiNhanThan_Load(object sender, EventArgs e)
         {
-            string sql = "Select * from BoPhan";
-            DataTable dt = Core.Core.GetData(sql);
+            //Load all bộ phận
+            DataTable dt = NguoiThanBUS.Instance.LoadData_BoPhan();
             cmbBoPhan.DataSource = dt;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
-            sql = "Select * from MoiQuanHe";
-            DataTable dt1 = Core.Core.GetData(sql);
+           
+            //Load all mối quan hệ
+            DataTable dt1 = NguoiThanBUS.Instance.LoadData_MoiQuanHe();
             cmbMQH.DataSource = dt1;
             cmbMQH.ValueMember = "MoiQuanHeID";
             cmbMQH.DisplayMember = "TenMoiQuanHe";
+
+
             Load_DL();
             Reset();
         }
 
         private void cmbBoPhan_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Load Nhân Viên theo bộ phận
             string BoPhanID = cmbBoPhan.SelectedValue.ToString();
-            string sql = "select a.NhanVienID, a.TenNV from NhanVien a INNER JOIN NhanVienBoPhan b on a.NhanVienID = b.NhanVienID and b.BoPhanID = '" + BoPhanID + "'";
-            DataTable dtNhanVien = Core.Core.GetData(sql);
+            DataTable dtNhanVien = NguoiThanBUS.Instance.LoadData_NhanVien_BoPhan(BoPhanID);
             cmbNhanVien.DataSource = dtNhanVien;
             cmbNhanVien.ValueMember = "NhanVienID";
             cmbNhanVien.DisplayMember = "TenNV";
@@ -118,10 +122,18 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            NguoiThanDTO nguoiThan = new NguoiThanDTO();
+            nguoiThan.TenNguoiThan = txtTenNguoiThan.Text;
+            nguoiThan.NhanVienID = int.Parse(cmbNhanVien.SelectedValue.ToString());
+            nguoiThan.MoiQuanHeID = int.Parse(cmbMQH.SelectedValue.ToString());
+            nguoiThan.NgheNghiep = txtNgheNghiep.Text;
+            nguoiThan.SDT = txtSDT.Text;
+            nguoiThan.DiaChi = txtDiaChi.Text;
+
             if (kt == 1)
             {
-                string sql = "Insert into NguoiThan(NhanVienID, MoiQuanHeID, TenNguoiThan, NgheNghiep, SDT, DiaChi) values ('" + cmbNhanVien.SelectedValue + "', '" + cmbMQH.SelectedValue + "', N'" + txtTenNguoiThan.Text + "', N'" + txtNgheNghiep.Text + "', '"+txtSDT.Text+"', N'"+txtDiaChi.Text+"')";
-                if (Core.Core.RunSql(sql) == -1)
+               
+                if (NguoiThanBUS.Instance.Add_NguoiThan(nguoiThan) == -1)
                 {
                     MessageBox.Show("Lỗi khi thêm mới");
                 }
@@ -132,8 +144,8 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update NguoiThan set NhanVienID ='" + cmbNhanVien.SelectedValue + "', MoiQuanHeID = '" + cmbMQH.SelectedValue + "', TenNguoiThan = N'" + txtTenNguoiThan.Text + "', NgheNghiep = N'" + txtNgheNghiep.Text + "', SDT = '"+txtSDT.Text+"', DiaChi = '"+txtDiaChi.Text+"' where NguoiThanID = '" + NguoiThanID + "'";
-                Core.Core.RunSql(sql);
+    
+                NguoiThanBUS.Instance.Update_NguoiThan(nguoiThan, NguoiThanID);
                 Load_DL();
             }
             Reset();
@@ -141,8 +153,8 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Delete NguoiThan where NguoiThanID = '" + NguoiThanID + "'";
-            Core.Core.RunSql(sql);
+
+            NguoiThanBUS.Instance.Delete_NguoiThan(NguoiThanID);
             Load_DL();
             Reset();
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,12 +23,8 @@ namespace HRM_VTHP.NghiepVu
         int PhieuTamUngID = 0;
         void Load_DL()
         {
-            string sql = @"select e.TenBoPhan, f.TrangThaiID, f.TenNV, f.MaNV, f.NhanVienID, f.GhiChu, f.PhieuTamUngID, f.ThangTamUng, f.MaPhieuTamUng, f.NgayLap, f.TamUng, f.TenTamUng,f.BoPhanID,f.TamUngID from BoPhan e inner join
-                        (select a.MaPhieuTamUng,a.PhieuTamUngID, a.NgayLap, a.NhanVienID, a.TrangThaiID, a.TamUng,a.ThangTamUng, d.BoPhanID, a.GhiChu, b.TenNV, b.MaNV, c.TenTamUng,c.TamUngID from ChiTietTamUng a 
-                        inner join NhanVien b on a.NhanVienID = b.NhanVienID
-                        inner join TamUng c on a.TamUngID = c.TamUngID
-                        inner join NhanVienBoPhan d on a.NhanVienID = d.NhanVienID) as f on e.BoPhanID = f.BoPhanID";
-            DataTable dt = Core.Core.GetData(sql);
+
+            DataTable dt = ChiTietTamUngBUS.Instance.LoadData_ChiTietTamUng();
             grdChiTietTamUng.DataSource = dt;
         }
         void Reset()
@@ -52,13 +50,13 @@ namespace HRM_VTHP.NghiepVu
         {
             Load_DL();
             Reset();
-            string sql = "Select * from TamUng";
-            DataTable dtTamUng = Core.Core.GetData(sql);
+           
+            DataTable dtTamUng = TamUngBUS.Instance.LoadAllTamUng();
             cmbLoaiTamUng.DataSource = dtTamUng;
             cmbLoaiTamUng.ValueMember = "TamUngID";
             cmbLoaiTamUng.DisplayMember = "TenTamUng";
-            sql = "Select * from BoPhan";
-            DataTable dt = Core.Core.GetData(sql);
+         
+            DataTable dt = BoPhanBUS.Instance.LoadAllBoPhan();
             cmbBoPhan.DataSource = dt;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
@@ -67,8 +65,8 @@ namespace HRM_VTHP.NghiepVu
         private void cmbBoPhan_SelectedIndexChanged(object sender, EventArgs e)
         {
             string BoPhanID = cmbBoPhan.SelectedValue.ToString();
-            string sql = "select a.NhanVienID, a.TenNV from NhanVien a INNER JOIN NhanVienBoPhan b on a.NhanVienID = b.NhanVienID and b.BoPhanID = '" + BoPhanID + "'";
-            DataTable dtNhanVien = Core.Core.GetData(sql);
+     
+            DataTable dtNhanVien = HopDongBUS.Instance.Load_NhanVienBoPhan(BoPhanID);
             cmbNhanVien.DataSource = dtNhanVien;
             cmbNhanVien.ValueMember = "NhanVienID";
             cmbNhanVien.DisplayMember = "TenNV";
@@ -132,19 +130,26 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            ChiTietTamUngDTO chiTietTamUngDTO = new ChiTietTamUngDTO();
+            chiTietTamUngDTO.MaPhieuTamUng = txtMaPhieu.Text;
+            chiTietTamUngDTO.ThangTamUng = dtpThang.Value.ToString("yyyyMM");
+            chiTietTamUngDTO.TamUngID = int.Parse(cmbLoaiTamUng.SelectedValue.ToString());
+            chiTietTamUngDTO.NhanVienID = int.Parse(cmbNhanVien.SelectedValue.ToString());
+            chiTietTamUngDTO.NgayLap = dtpNgayLap.Value;
+            chiTietTamUngDTO.TamUng = float.Parse(txtSoTienTamUng.Text.ToString());
+            chiTietTamUngDTO.GhiChu = txtGhiChu.Text;
             if (kt == 1)
             {
                 if (validateHieuSuat())
                 {
-                    string sql = "Insert into ChiTietTamUng(MaPhieuTamUng, ThangTamUng, TamUngID, NhanVienID, NgayLap, TamUng, GhiChu, TrangThaiID) values ('" + txtMaPhieu.Text + "', '" + dtpThang.Value.ToString("yyyyMM")+ "', '" + cmbLoaiTamUng.SelectedValue + "', '" + cmbNhanVien.SelectedValue + "', '" + dtpNgayLap.Value+ "','" + txtSoTienTamUng.Text + "','"+txtGhiChu.Text+"', '1')";
-                                    if (Core.Core.RunSql(sql) == -1)
-                                    {
-                                        MessageBox.Show("Lỗi khi thêm mới");
-                                    }
-                                    else
-                                    {
-                                        Load_DL();
-                                    }
+                    if (ChiTietTamUngBUS.Instance.Add_ChiTietTamUng(chiTietTamUngDTO) == -1)
+                    {
+                        MessageBox.Show("Lỗi khi thêm mới");
+                    }
+                    else
+                    {
+                        Load_DL();
+                    }
                 }
                 else
                 {
@@ -154,8 +159,7 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update ChiTietTamUng set MaPhieuTamUng ='" + txtMaPhieu.Text + "', ThangTamUng = '" + dtpThang.Value.ToString("yyyyMM") + "', TamUngID = '" + cmbLoaiTamUng.SelectedValue + "', NhanVienID = '" + cmbNhanVien.SelectedValue + "', NgayLap = '" + dtpNgayLap.Value + "', TamUng = '" + txtSoTienTamUng.Text + "', GhiChu ='"+txtGhiChu.Text+"' where PhieuTamUngID = '" + PhieuTamUngID + "'";
-                Core.Core.RunSql(sql);
+                ChiTietTamUngBUS.Instance.Update_ChiTietTamUng(chiTietTamUngDTO, PhieuTamUngID);
                 Load_DL();
             }
             Reset();
@@ -163,8 +167,7 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Delete ChiTietTamUng where PhieuTamUngID = '" + PhieuTamUngID + "'";
-            Core.Core.RunSql(sql);
+            ChiTietTamUngBUS.Instance.Delete_ChiTietTamUng(PhieuTamUngID);
             Load_DL();
             Reset();
         }
@@ -181,7 +184,7 @@ namespace HRM_VTHP.NghiepVu
             txtSoTienTamUng.Text = gridView1.GetFocusedRowCellValue("TamUng").ToString();
             dtpNgayLap.Value = DateTime.Parse(gridView1.GetFocusedRowCellValue("NgayLap").ToString());
             
-            dtpThang.Value = DateTime.ParseExact(gridView1.GetFocusedRowCellValue("ThangTamUng").ToString().Trim() + "01", "yyyyMMdd", CultureInfo.InvariantCulture);
+            //dtpThang.Value = DateTime.ParseExact(gridView1.GetFocusedRowCellValue("ThangTamUng").ToString().Trim() + "01", "yyyyMMdd", CultureInfo.InvariantCulture);
             cmbNhanVien.SelectedValue = int.Parse(gridView1.GetFocusedRowCellValue("NhanVienID").ToString());
         }
     }

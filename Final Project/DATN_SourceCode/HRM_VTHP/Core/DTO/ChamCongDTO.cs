@@ -20,6 +20,6 @@ namespace HRM_VTHP.Core.DTO
         public int NgayChamCong { get; set; }
         public int TrangThai { get; set; }
         public string GhiChu { get; set; }
-        public char Thang { get; set; }
+        public string Thang { get; set; }
     }
 }

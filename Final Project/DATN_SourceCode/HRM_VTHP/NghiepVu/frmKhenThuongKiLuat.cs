@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,12 +22,8 @@ namespace HRM_VTHP.NghiepVu
         int KhenThuongKyLuatID = 0;
         void Load_DL()
         {
-            string sql = @"select f.KhenThuongKyLuatID, f.NhanVienID, f.MaNV, f.TenNV, e.TenBoPhan, f.BoPhanID, f.TenLoaiQuyetDinh, f.LoaiQuyetDinhID, f.NgayQuyetDinh, f.GhiChu from BoPhan e
-                        inner join
-                        (select a.KhenThuongKyLuatID, a.NhanVienID, a.GhiChu, b.TenNV, b.MaNV, a.LoaiQuyetDinhID, a.NgayQuyetDinh, c.TenLoaiQuyetDinh, d.BoPhanID from KhenThuongKyLuat a
-                        inner join NhanVien b on a.NhanVienID = b.NhanVienID inner join LoaiQuyetDinh c on a.LoaiQuyetDinhID = c.LoaiQuyetDinhID
-                        inner join NhanVienBoPhan d on a.NhanVienID = d.NhanVienID) as f on e.BoPhanID = f.BoPhanID";
-            DataTable dt = Core.Core.GetData(sql);
+
+            DataTable dt = KhenThuongKyLuatBUS.Instance.LoadData_KhenThuongKyLuat();
             grdKhenThuongKiLuat.DataSource = dt;
         }
         void Reset()
@@ -45,13 +43,11 @@ namespace HRM_VTHP.NghiepVu
 
         private void frmKhenThuongKiLuat_Load(object sender, EventArgs e)
         {
-            string sql = "Select * from LoaiQuyetDinh";
-            DataTable dt = Core.Core.GetData(sql);
+            DataTable dt = LoaiQuyetDinhBUS.Instance.LoadAllLoaiQuyetDinh();
             cmbQuyetDinh.DataSource = dt;
             cmbQuyetDinh.ValueMember = "LoaiQuyetDinhID";
             cmbQuyetDinh.DisplayMember = "TenLoaiQuyetDinh";
-            sql = "Select * from BoPhan";
-            DataTable dt1 = Core.Core.GetData(sql);
+            DataTable dt1 = BoPhanBUS.Instance.LoadAllBoPhan();
             cmbBoPhan.DataSource = dt1;
             cmbBoPhan.ValueMember = "BoPhanID";
             cmbBoPhan.DisplayMember = "TenBoPhan";
@@ -62,8 +58,8 @@ namespace HRM_VTHP.NghiepVu
         private void cmbBoPhan_SelectedIndexChanged(object sender, EventArgs e)
         {
             string BoPhanID = cmbBoPhan.SelectedValue.ToString();
-            string sql = "select a.NhanVienID, a.TenNV from NhanVien a INNER JOIN NhanVienBoPhan b on a.NhanVienID = b.NhanVienID and b.BoPhanID = '" + BoPhanID + "'";
-            DataTable dtNhanVien = Core.Core.GetData(sql);
+
+            DataTable dtNhanVien = HopDongBUS.Instance.Load_NhanVienBoPhan(BoPhanID);
             cmbNhanVien.DataSource = dtNhanVien;
             cmbNhanVien.ValueMember = "NhanVienID";
             cmbNhanVien.DisplayMember = "TenNV";
@@ -107,10 +103,18 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            KhenThuongKyLuatDTO khenThuongKyLuatDTO = new KhenThuongKyLuatDTO();
+            khenThuongKyLuatDTO.NhanVienID = int.Parse(cmbNhanVien.SelectedValue.ToString());
+            khenThuongKyLuatDTO.LoaiQuyetDinhID = int.Parse(cmbQuyetDinh.SelectedValue.ToString());
+            khenThuongKyLuatDTO.NgayQuyetDinh = dtpNgayQuyetDinh.Value;
+            khenThuongKyLuatDTO.GhiChu = txtGhiChu.Text;
+
+
+
             if (kt == 1)
             {
-                string sql = "Insert into KhenThuongKyLuat(NhanVienID, LoaiQuyetDinhID, NgayQuyetDinh, GhiChu) values ('" + cmbNhanVien.SelectedValue + "', '" + cmbQuyetDinh.SelectedValue + "', '"+dtpNgayQuyetDinh.Value+"', N'"+txtGhiChu.Text+"')";
-                if (Core.Core.RunSql(sql) == -1)
+               
+                if (KhenThuongKyLuatBUS.Instance.Add_KhenThuongKyLuat(khenThuongKyLuatDTO) == -1)
                 {
                     MessageBox.Show("Lỗi khi thêm mới");
                 }
@@ -121,8 +125,7 @@ namespace HRM_VTHP.NghiepVu
             }
             else
             {
-                string sql = "Update KhenThuongKyLuat set NhanVienID ='" + cmbNhanVien.SelectedValue + "', LoaiQuyetDinhID = '" + cmbQuyetDinh.SelectedValue + "', NgayQuyetDinh = '"+dtpNgayQuyetDinh.Value+"', GhiChu = N'"+txtGhiChu.Text+"' where KhenThuongKyLuatID = '" + KhenThuongKyLuatID + "'";
-                Core.Core.RunSql(sql);
+                KhenThuongKyLuatBUS.Instance.Update_KhenThuongKyLuat(khenThuongKyLuatDTO, KhenThuongKyLuatID);
                 Load_DL();
             }
             Reset();
@@ -130,8 +133,7 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Delete KhenThuongKyLuat where KhenThuongKyLuatID = '" + KhenThuongKyLuatID + "'";
-            Core.Core.RunSql(sql);
+            KhenThuongKyLuatBUS.Instance.Delete_KhenThuongKyLuat(KhenThuongKyLuatID);
             Load_DL();
             Reset();
         }

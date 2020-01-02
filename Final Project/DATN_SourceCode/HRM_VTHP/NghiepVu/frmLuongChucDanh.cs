@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,8 +22,8 @@ namespace HRM_VTHP.NghiepVu
         int ChucDanhID = 0;
         void Load_DL()
         {
-            string sql = "Select * from LuongChucDanh";
-            DataTable dt = Core.Core.GetData(sql);
+
+            DataTable dt = LuongChucDanhBUS.Instance.LoadData_LuongChucDanh();
             grdLuongChucDanh.DataSource = dt;
         }
         void Reset()
@@ -69,6 +71,10 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            LuongChucDanhDTO luongChucDanhDTO = new LuongChucDanhDTO();
+            luongChucDanhDTO.TenChucDanh = txtChucDanh.Text;
+            luongChucDanhDTO.TienLuongCung = float.Parse(txtTienLuongCung.Text.ToString());
+            luongChucDanhDTO.PhuCap = float.Parse(txtPhuCap.Text.ToString());
             if (kt == 1)
             {
                 if (txtChucDanh.Text == "")
@@ -83,24 +89,19 @@ namespace HRM_VTHP.NghiepVu
                 {
                     MessageBox.Show("Bạn chưa nhập phụ cấp");
                 }
+                else if (LuongChucDanhBUS.Instance.Add_LuongChucDanh(luongChucDanhDTO) == -1)
+                {
+                    MessageBox.Show("Lỗi khi thêm mới");
+                }
+
                 else
                 {
-                    string sql = "Insert into LuongChucDanh(TenChucDanh, TienLuongCung, PhuCap) values (N'" + txtChucDanh.Text + "', '"+txtTienLuongCung.Text+"', '"+txtPhuCap.Text+"')";
-                    if (Core.Core.RunSql(sql) == -1)
-                    {
-                        MessageBox.Show("Lỗi khi thêm mới");
-                    }
-
-                    else
-                    {
-                        Load_DL();
-                    }
+                    Load_DL();
                 }
             }
             else
             {
-                string sql = "Update LuongChucDanh set TenChucDanh =N'" + txtChucDanh.Text + "', TienLuongCung='"+txtTienLuongCung.Text+"', PhuCap='"+txtPhuCap.Text+"' where ChucDanhID = '" + ChucDanhID + "'";
-                Core.Core.RunSql(sql);
+                LuongChucDanhBUS.Instance.Update_LuongChucDanh(luongChucDanhDTO, ChucDanhID);
                 Load_DL();
             }
             Reset();
@@ -113,16 +114,15 @@ namespace HRM_VTHP.NghiepVu
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string sql = "Select *from NhanVienChucDanh where ChucDanhID = '"+ChucDanhID+"'";
-            DataTable dtNVCD =Core.Core.GetData(sql);
+
+            DataTable dtNVCD = LuongChucDanhBUS.Instance.Load_NhanVienChucDanh(ChucDanhID);
             if(dtNVCD.Rows.Count >0)
             {
                 MessageBox.Show("Bạn phải xóa bản ghi trong Nhân viên chức danh trước");
             }
             else
             {
-                sql = "Delete LuongChucDanh where ChucDanhID='"+ChucDanhID+"'";
-                Core.Core.RunSql(sql);
+                LuongChucDanhBUS.Instance.Delete_LuongChucDanh(ChucDanhID);
                 Load_DL();
             }
             Reset();

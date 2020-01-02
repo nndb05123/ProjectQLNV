@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using HRM_VTHP.Core.BUS;
+using HRM_VTHP.Core;
 
 namespace HRM_VTHP.HeThong
 {
@@ -34,7 +35,8 @@ namespace HRM_VTHP.HeThong
             
             this.Hide();
             DataTable dt = NguoiDungBUS.Instance.Login(txtTenDangNhap.Text.Trim(), txtMatKhau.Text.Trim());
-            if(txtTenDangNhap.Text=="")
+            //MessageBox.Show(Security.EncryptMd5(txtMatKhau.Text));
+            if (txtTenDangNhap.Text=="")
             {
                 MessageBox.Show("Bạn chưa nhập tên đăng nhập");
             }
