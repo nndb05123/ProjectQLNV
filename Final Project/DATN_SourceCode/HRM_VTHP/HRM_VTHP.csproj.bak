@@ -37,38 +37,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Charts.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.CodeParser.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.DataAccess.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v16.1.UI, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.PivotGrid.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.RichEdit.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Sparkline.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v16.1.UI, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v16.1.Extensions, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v16.1.Wizard, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraEditors.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGrid.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraNavBar.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPivotGrid.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraReports.v16.1.Extensions, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraRichEdit.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraScheduler.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraTreeList.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.BonusSkins.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v19.2.UI, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Export, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v19.2.Extensions, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v19.2.Wizard, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v19.2.Extensions, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v19.2.Core, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v19.2, Version=19.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -105,6 +107,12 @@
     <Compile Include="BaoCao\BaoCaoChiTietTamUng.Designer.cs">
       <DependentUpon>BaoCaoChiTietTamUng.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BaoCaoHopDongHetHan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BaoCaoHopDongHetHan.Designer.cs">
+      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BaoCaoHoSoMotNV.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,12 +130,6 @@
     </Compile>
     <Compile Include="BaoCao\BaoCaoKhenThuongKyLuat.Designer.cs">
       <DependentUpon>BaoCaoKhenThuongKyLuat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BaoCaoHopDongHetHan.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BaoCaoHopDongHetHan.Designer.cs">
-      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BaoCaoLuongHangThang.cs">
       <SubType>Component</SubType>
@@ -231,7 +233,85 @@
     <Compile Include="BaoCao\ThongKeSLLaoDong.Designer.cs">
       <DependentUpon>ThongKeSLLaoDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\BUS\BangCapBUS.cs" />
+    <Compile Include="Core\BUS\BoPhanBUS.cs" />
+    <Compile Include="Core\BUS\ChamCongBUS.cs" />
+    <Compile Include="Core\BUS\ChiTietBanKeLuongBUS.cs" />
+    <Compile Include="Core\BUS\ChiTietTamUngBUS.cs" />
+    <Compile Include="Core\BUS\DanhGiaHieuSuatBUS.cs" />
+    <Compile Include="Core\BUS\DanTocBUS.cs" />
+    <Compile Include="Core\BUS\HopDongBUS.cs" />
+    <Compile Include="Core\BUS\HoSoNhanVienBUS.cs" />
+    <Compile Include="Core\BUS\KhenThuongKyLuatBUS.cs" />
+    <Compile Include="Core\BUS\LoaiHopDongBUS.cs" />
+    <Compile Include="Core\BUS\LoaiQuyetDinhBUS.cs" />
+    <Compile Include="Core\BUS\LuongChucDanhBUS.cs" />
+    <Compile Include="Core\BUS\MoiQuanHeBUS.cs" />
+    <Compile Include="Core\BUS\NghiepVuBUS.cs" />
+    <Compile Include="Core\BUS\NgoaiNguBUS.cs" />
+    <Compile Include="Core\BUS\NguoiDungBUS.cs" />
+    <Compile Include="Core\BUS\NguoiThanBUS.cs" />
+    <Compile Include="Core\BUS\NhanVienBoPhanBUS.cs" />
+    <Compile Include="Core\BUS\NhanVienBUS.cs" />
+    <Compile Include="Core\BUS\NhanVienChucDanh.cs" />
+    <Compile Include="Core\BUS\QuyenNguoiDungBUS.cs" />
+    <Compile Include="Core\BUS\TamUngBUS.cs" />
+    <Compile Include="Core\BUS\TinHocBUS.cs" />
+    <Compile Include="Core\BUS\TinhThanhBUS.cs" />
+    <Compile Include="Core\BUS\TonGiaoBUS.cs" />
     <Compile Include="Core\Core.cs" />
+    <Compile Include="Core\DAO\BangCapDAO.cs" />
+    <Compile Include="Core\DAO\BoPhanDAO.cs" />
+    <Compile Include="Core\DAO\ChamCongDAO.cs" />
+    <Compile Include="Core\DAO\ChiTietBanKeLuongDAO.cs" />
+    <Compile Include="Core\DAO\ChiTietTamUngDAO.cs" />
+    <Compile Include="Core\DAO\DanhGiaHieuSuatDAO.cs" />
+    <Compile Include="Core\DAO\DanTocDAO.cs" />
+    <Compile Include="Core\DAO\HopDongDAO.cs" />
+    <Compile Include="Core\DAO\HoSoNhanVienDAO.cs" />
+    <Compile Include="Core\DAO\KhenThuongKyLuatDAO.cs" />
+    <Compile Include="Core\DAO\LoaiHopDongDAO.cs" />
+    <Compile Include="Core\DAO\LoaiQuyetDinhDAO.cs" />
+    <Compile Include="Core\DAO\LuongChucDanhDAO.cs" />
+    <Compile Include="Core\DAO\MoiQuanHeDAO.cs" />
+    <Compile Include="Core\DAO\NghiepVuDAO.cs" />
+    <Compile Include="Core\DAO\NgoaiNguDAO.cs" />
+    <Compile Include="Core\DAO\NguoiDungDAO.cs" />
+    <Compile Include="Core\DAO\NguoiThanDAO.cs" />
+    <Compile Include="Core\DAO\NhanVienBoPhanDAO.cs" />
+    <Compile Include="Core\DAO\NhanVienChucDanhDAO.cs" />
+    <Compile Include="Core\DAO\NhanVienDAO.cs" />
+    <Compile Include="Core\DAO\QuyenNguoiDungDAO.cs" />
+    <Compile Include="Core\DAO\TamUngDAO.cs" />
+    <Compile Include="Core\DAO\TinHocDAO.cs" />
+    <Compile Include="Core\DAO\TinhThanhDAO.cs" />
+    <Compile Include="Core\DAO\TonGiaoDAO.cs" />
+    <Compile Include="Core\DTO\BangCapDTO.cs" />
+    <Compile Include="Core\DTO\BoPhanDTO.cs" />
+    <Compile Include="Core\DTO\ChamCongDTO.cs" />
+    <Compile Include="Core\DTO\ChiTietBanKeLuongDTO.cs" />
+    <Compile Include="Core\DTO\ChiTietTamUngDTO.cs" />
+    <Compile Include="Core\DTO\DanhGiaHieuSuatDTO.cs" />
+    <Compile Include="Core\DTO\DanTocDTO.cs" />
+    <Compile Include="Core\DTO\HopDongDTO.cs" />
+    <Compile Include="Core\DTO\HoSoNhanVienDTO.cs" />
+    <Compile Include="Core\DTO\KhenThuongKyLuatDTO.cs" />
+    <Compile Include="Core\DTO\LoaiHopDongDTO.cs" />
+    <Compile Include="Core\DTO\LoaiQuyetDinhDTO.cs" />
+    <Compile Include="Core\DTO\LuongChucDanhDTO.cs" />
+    <Compile Include="Core\DTO\MoiQuanHeDTO.cs" />
+    <Compile Include="Core\DTO\NghiepVuDTO.cs" />
+    <Compile Include="Core\DTO\NgoaiNguDTO.cs" />
+    <Compile Include="Core\DTO\NguoiDungDTO.cs" />
+    <Compile Include="Core\DTO\NguoiThanDTO.cs" />
+    <Compile Include="Core\DTO\NhanVienBoPhanDTO.cs" />
+    <Compile Include="Core\DTO\NhanVienChucDanhDTO.cs" />
+    <Compile Include="Core\DTO\NhanVienDTO.cs" />
+    <Compile Include="Core\DTO\QuyenNguoiDung.cs" />
+    <Compile Include="Core\DTO\TamUngDTO.cs" />
+    <Compile Include="Core\DTO\TinHocDTO.cs" />
+    <Compile Include="Core\DTO\TinhThanhDTO.cs" />
+    <Compile Include="Core\DTO\TonGiaoDTO.cs" />
     <Compile Include="Core\Security.cs" />
     <Compile Include="DanhMuc\frmChungChiTinHoc.cs">
       <SubType>Form</SubType>
@@ -435,12 +515,16 @@
     </Compile>
     <EmbeddedResource Include="BaoCao\BaoCaoBangCapChungChi.resx">
       <DependentUpon>BaoCaoBangCapChungChi.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoChamCong.resx">
       <DependentUpon>BaoCaoChamCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoChiTietTamUng.resx">
       <DependentUpon>BaoCaoChiTietTamUng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BaoCaoHopDongHetHan.resx">
+      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoHoSoMotNV.resx">
       <DependentUpon>BaoCaoHoSoMotNV.cs</DependentUpon>
@@ -450,9 +534,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoKhenThuongKyLuat.resx">
       <DependentUpon>BaoCaoKhenThuongKyLuat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BaoCaoHopDongHetHan.resx">
-      <DependentUpon>BaoCaoHopDongHetHan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoLuongHangThang.resx">
       <DependentUpon>BaoCaoLuongHangThang.cs</DependentUpon>
@@ -651,6 +732,7 @@
   <ItemGroup>
     <Folder Include="bin\Release\" />
     <Folder Include="Core\Image\" />
+    <Folder Include="FileDinhKem\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1.png" />
