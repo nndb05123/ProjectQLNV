@@ -43,6 +43,8 @@ namespace HRM_VTHP.NghiepVu
             btnSua.Enabled = false;
             btnCapNhat.Enabled = false;
             btnXoa.Enabled = false;
+            btnXemHoSo.Enabled = false;
+            btnKTKL.Enabled = false;
             btnHuybo.Enabled = false;
             dtpNgaySinh.Enabled = false;
             cmbGioiTinh.Enabled = false;
@@ -226,6 +228,8 @@ namespace HRM_VTHP.NghiepVu
             {
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
+                btnXemHoSo.Enabled = true;
+                btnKTKL.Enabled = true;
                 NhanVienID = int.Parse(gridView1.GetFocusedRowCellValue("NhanVienID").ToString());
                 txtDiaChi.Text = gridView1.GetFocusedRowCellValue("DiaChi").ToString();
                 txtEmail.Text = gridView1.GetFocusedRowCellValue("Email").ToString();
@@ -268,6 +272,21 @@ namespace HRM_VTHP.NghiepVu
                 e.Handled = true;
                 MessageBox.Show("Bạn không được phép nhập số");
             }
+        }
+        private void btnXemHoSo_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmHoSoNV frm = new frmHoSoNV();
+            frm.ShowDialog();
+            this.Close();
+        }
+
+        private void btnKTKL_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmKhenThuongKiLuat frm = new frmKhenThuongKiLuat();
+            frm.ShowDialog();
+            this.Close();
         }
     }
 }

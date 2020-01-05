@@ -69,6 +69,7 @@
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnThemHopDong = new DevExpress.XtraEditors.SimpleButton();
             this.grbThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -130,7 +131,7 @@
             this.cmbTinhThanh.FormattingEnabled = true;
             this.cmbTinhThanh.Location = new System.Drawing.Point(403, 85);
             this.cmbTinhThanh.Name = "cmbTinhThanh";
-            this.cmbTinhThanh.Size = new System.Drawing.Size(182, 30);
+            this.cmbTinhThanh.Size = new System.Drawing.Size(182, 26);
             this.cmbTinhThanh.TabIndex = 33;
             // 
             // cmbBangCap
@@ -140,7 +141,7 @@
             this.cmbBangCap.FormattingEnabled = true;
             this.cmbBangCap.Location = new System.Drawing.Point(403, 55);
             this.cmbBangCap.Name = "cmbBangCap";
-            this.cmbBangCap.Size = new System.Drawing.Size(182, 30);
+            this.cmbBangCap.Size = new System.Drawing.Size(182, 26);
             this.cmbBangCap.TabIndex = 32;
             // 
             // cmbTinHoc
@@ -150,7 +151,7 @@
             this.cmbTinHoc.FormattingEnabled = true;
             this.cmbTinHoc.Location = new System.Drawing.Point(403, 20);
             this.cmbTinHoc.Name = "cmbTinHoc";
-            this.cmbTinHoc.Size = new System.Drawing.Size(182, 30);
+            this.cmbTinHoc.Size = new System.Drawing.Size(182, 26);
             this.cmbTinHoc.TabIndex = 31;
             // 
             // cmbNgoaiNgu
@@ -158,9 +159,9 @@
             this.cmbNgoaiNgu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbNgoaiNgu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbNgoaiNgu.FormattingEnabled = true;
-            this.cmbNgoaiNgu.Location = new System.Drawing.Point(103, 153);
+            this.cmbNgoaiNgu.Location = new System.Drawing.Point(114, 153);
             this.cmbNgoaiNgu.Name = "cmbNgoaiNgu";
-            this.cmbNgoaiNgu.Size = new System.Drawing.Size(190, 30);
+            this.cmbNgoaiNgu.Size = new System.Drawing.Size(190, 26);
             this.cmbNgoaiNgu.TabIndex = 30;
             // 
             // cmbTonGiao
@@ -168,9 +169,9 @@
             this.cmbTonGiao.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbTonGiao.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbTonGiao.FormattingEnabled = true;
-            this.cmbTonGiao.Location = new System.Drawing.Point(103, 119);
+            this.cmbTonGiao.Location = new System.Drawing.Point(114, 119);
             this.cmbTonGiao.Name = "cmbTonGiao";
-            this.cmbTonGiao.Size = new System.Drawing.Size(190, 30);
+            this.cmbTonGiao.Size = new System.Drawing.Size(190, 26);
             this.cmbTonGiao.TabIndex = 29;
             // 
             // cmbDanToc
@@ -178,9 +179,9 @@
             this.cmbDanToc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbDanToc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbDanToc.FormattingEnabled = true;
-            this.cmbDanToc.Location = new System.Drawing.Point(103, 85);
+            this.cmbDanToc.Location = new System.Drawing.Point(114, 85);
             this.cmbDanToc.Name = "cmbDanToc";
-            this.cmbDanToc.Size = new System.Drawing.Size(190, 30);
+            this.cmbDanToc.Size = new System.Drawing.Size(190, 26);
             this.cmbDanToc.TabIndex = 28;
             // 
             // cmbTenNV
@@ -188,16 +189,16 @@
             this.cmbTenNV.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbTenNV.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbTenNV.FormattingEnabled = true;
-            this.cmbTenNV.Location = new System.Drawing.Point(103, 17);
+            this.cmbTenNV.Location = new System.Drawing.Point(114, 17);
             this.cmbTenNV.Name = "cmbTenNV";
-            this.cmbTenNV.Size = new System.Drawing.Size(190, 30);
+            this.cmbTenNV.Size = new System.Drawing.Size(190, 26);
             this.cmbTenNV.TabIndex = 27;
             // 
             // txtGhiChu
             // 
             this.txtGhiChu.Location = new System.Drawing.Point(403, 119);
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(182, 29);
+            this.txtGhiChu.Size = new System.Drawing.Size(182, 26);
             this.txtGhiChu.TabIndex = 25;
             // 
             // lblGHICHU
@@ -206,7 +207,7 @@
             this.lblGHICHU.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGHICHU.Location = new System.Drawing.Point(328, 122);
             this.lblGHICHU.Name = "lblGHICHU";
-            this.lblGHICHU.Size = new System.Drawing.Size(70, 22);
+            this.lblGHICHU.Size = new System.Drawing.Size(56, 18);
             this.lblGHICHU.TabIndex = 21;
             this.lblGHICHU.Text = "Ghi chú";
             // 
@@ -216,7 +217,7 @@
             this.lblTINHTHANH.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTINHTHANH.Location = new System.Drawing.Point(328, 88);
             this.lblTINHTHANH.Name = "lblTINHTHANH";
-            this.lblTINHTHANH.Size = new System.Drawing.Size(96, 22);
+            this.lblTINHTHANH.Size = new System.Drawing.Size(78, 18);
             this.lblTINHTHANH.TabIndex = 20;
             this.lblTINHTHANH.Text = "Tỉnh thành";
             // 
@@ -226,7 +227,7 @@
             this.lblBANGCAP.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBANGCAP.Location = new System.Drawing.Point(328, 58);
             this.lblBANGCAP.Name = "lblBANGCAP";
-            this.lblBANGCAP.Size = new System.Drawing.Size(83, 22);
+            this.lblBANGCAP.Size = new System.Drawing.Size(69, 18);
             this.lblBANGCAP.TabIndex = 19;
             this.lblBANGCAP.Text = "Bằng cấp";
             // 
@@ -236,16 +237,16 @@
             this.lblTINHOC.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTINHOC.Location = new System.Drawing.Point(328, 28);
             this.lblTINHOC.Name = "lblTINHOC";
-            this.lblTINHOC.Size = new System.Drawing.Size(69, 22);
+            this.lblTINHOC.Size = new System.Drawing.Size(56, 18);
             this.lblTINHOC.TabIndex = 18;
             this.lblTINHOC.Text = "Tin học";
             // 
             // dtpNgayVaoLam
             // 
             this.dtpNgayVaoLam.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgayVaoLam.Location = new System.Drawing.Point(103, 52);
+            this.dtpNgayVaoLam.Location = new System.Drawing.Point(114, 52);
             this.dtpNgayVaoLam.Name = "dtpNgayVaoLam";
-            this.dtpNgayVaoLam.Size = new System.Drawing.Size(190, 29);
+            this.dtpNgayVaoLam.Size = new System.Drawing.Size(190, 26);
             this.dtpNgayVaoLam.TabIndex = 14;
             // 
             // lblNGOAINGU
@@ -254,7 +255,7 @@
             this.lblNGOAINGU.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNGOAINGU.Location = new System.Drawing.Point(6, 153);
             this.lblNGOAINGU.Name = "lblNGOAINGU";
-            this.lblNGOAINGU.Size = new System.Drawing.Size(92, 22);
+            this.lblNGOAINGU.Size = new System.Drawing.Size(74, 18);
             this.lblNGOAINGU.TabIndex = 7;
             this.lblNGOAINGU.Text = "Ngoại ngữ";
             // 
@@ -264,7 +265,7 @@
             this.lblNGAYVAOLAM.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNGAYVAOLAM.Location = new System.Drawing.Point(6, 58);
             this.lblNGAYVAOLAM.Name = "lblNGAYVAOLAM";
-            this.lblNGAYVAOLAM.Size = new System.Drawing.Size(124, 22);
+            this.lblNGAYVAOLAM.Size = new System.Drawing.Size(104, 18);
             this.lblNGAYVAOLAM.TabIndex = 5;
             this.lblNGAYVAOLAM.Text = "Ngày vào làm ";
             // 
@@ -274,7 +275,7 @@
             this.lblDANTOC.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDANTOC.Location = new System.Drawing.Point(6, 88);
             this.lblDANTOC.Name = "lblDANTOC";
-            this.lblDANTOC.Size = new System.Drawing.Size(71, 22);
+            this.lblDANTOC.Size = new System.Drawing.Size(59, 18);
             this.lblDANTOC.TabIndex = 2;
             this.lblDANTOC.Text = "Dân tộc";
             // 
@@ -284,7 +285,7 @@
             this.lblTONGIAO.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTONGIAO.Location = new System.Drawing.Point(6, 119);
             this.lblTONGIAO.Name = "lblTONGIAO";
-            this.lblTONGIAO.Size = new System.Drawing.Size(80, 22);
+            this.lblTONGIAO.Size = new System.Drawing.Size(65, 18);
             this.lblTONGIAO.TabIndex = 1;
             this.lblTONGIAO.Text = "Tôn giáo";
             // 
@@ -294,7 +295,7 @@
             this.lbMaNV.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMaNV.Location = new System.Drawing.Point(6, 25);
             this.lbMaNV.Name = "lbMaNV";
-            this.lbMaNV.Size = new System.Drawing.Size(123, 22);
+            this.lbMaNV.Size = new System.Drawing.Size(102, 18);
             this.lbMaNV.TabIndex = 0;
             this.lbMaNV.Text = "Tên nhân viên";
             // 
@@ -345,7 +346,7 @@
             this.btnXoa.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.Appearance.Options.UseFont = true;
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
-            this.btnXoa.Location = new System.Drawing.Point(617, 216);
+            this.btnXoa.Location = new System.Drawing.Point(803, 216);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(119, 32);
             this.btnXoa.TabIndex = 12;
@@ -528,11 +529,24 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // btnThemHopDong
+            // 
+            this.btnThemHopDong.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemHopDong.Appearance.Options.UseFont = true;
+            this.btnThemHopDong.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnThemHopDong.Location = new System.Drawing.Point(617, 216);
+            this.btnThemHopDong.Name = "btnThemHopDong";
+            this.btnThemHopDong.Size = new System.Drawing.Size(158, 32);
+            this.btnThemHopDong.TabIndex = 15;
+            this.btnThemHopDong.Text = "Thêm hợp đồng";
+            this.btnThemHopDong.Click += new System.EventHandler(this.btnThemHopDong_Click);
+            // 
             // frmHoSoNV
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 494);
+            this.Controls.Add(this.btnThemHopDong);
             this.Controls.Add(this.grbThongTin);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnHuybo);
@@ -595,5 +609,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.SimpleButton btnThemHopDong;
     }
 }
