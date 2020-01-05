@@ -208,7 +208,7 @@
             this.xrLabel4.SizeF = new System.Drawing.SizeF(296.2727F, 51.66667F);
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "TRUNG TÂM CÔNG NGHỆ THÔNG TIN\r\nVNPT HẢI PHÒNG";
+            this.xrLabel4.Text = "TRUNG TÂM CÔNG NGHỆ THÔNG TIN\r\nVNPT HÒA BÌNH";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrTable1
