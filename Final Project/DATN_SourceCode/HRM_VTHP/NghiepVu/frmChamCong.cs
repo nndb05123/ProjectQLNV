@@ -38,6 +38,7 @@ namespace HRM_VTHP.NghiepVu
                 cmbBoPhan.DataSource = dt;
                 cmbBoPhan.ValueMember = "BoPhanID";
                 cmbBoPhan.DisplayMember = "TenBoPhan";
+                btnHieuSuat.Hide();
             }
             catch (Exception)
             {
@@ -257,6 +258,19 @@ namespace HRM_VTHP.NghiepVu
                 Image image = Image.FromFile("c:\\unlock.png");
                 e.Graphics.DrawImage(image, new Point(e.Bounds.Location.X + 35, e.Bounds.Location.Y));
             }
+        }
+
+        private void btnHieuSuat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmDanhGiaHieuSuat frm = new frmDanhGiaHieuSuat();
+            frm.ShowDialog();
+            this.Close();
+        }
+
+        private void grdChamCong_Click(object sender, EventArgs e)
+        {
+            btnHieuSuat.Show();
         }
     }
 }

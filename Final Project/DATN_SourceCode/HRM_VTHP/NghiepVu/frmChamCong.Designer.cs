@@ -69,6 +69,7 @@
             this.btnNop = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnHieuSuat = new DevExpress.XtraEditors.SimpleButton();
             this.grbThongTinChamCong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdChamCong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -97,27 +98,28 @@
             this.grbThongTinChamCong.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grbThongTinChamCong.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grbThongTinChamCong.Controls.Add(this.btnHieuSuat);
             this.grbThongTinChamCong.Controls.Add(this.btnHienThi);
             this.grbThongTinChamCong.Controls.Add(this.cmbBoPhan);
             this.grbThongTinChamCong.Controls.Add(this.dtpThang);
             this.grbThongTinChamCong.Controls.Add(this.lblThang);
             this.grbThongTinChamCong.Controls.Add(this.lblBoPhan);
             this.grbThongTinChamCong.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbThongTinChamCong.Location = new System.Drawing.Point(18, 18);
-            this.grbThongTinChamCong.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grbThongTinChamCong.Location = new System.Drawing.Point(16, 14);
+            this.grbThongTinChamCong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grbThongTinChamCong.Name = "grbThongTinChamCong";
-            this.grbThongTinChamCong.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grbThongTinChamCong.Size = new System.Drawing.Size(1581, 102);
+            this.grbThongTinChamCong.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbThongTinChamCong.Size = new System.Drawing.Size(1405, 82);
             this.grbThongTinChamCong.TabIndex = 44;
             this.grbThongTinChamCong.TabStop = false;
             this.grbThongTinChamCong.Text = "Thông tin Chấm Công";
             // 
             // btnHienThi
             // 
-            this.btnHienThi.Location = new System.Drawing.Point(1332, 29);
-            this.btnHienThi.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnHienThi.Location = new System.Drawing.Point(1184, 23);
+            this.btnHienThi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnHienThi.Name = "btnHienThi";
-            this.btnHienThi.Size = new System.Drawing.Size(112, 35);
+            this.btnHienThi.Size = new System.Drawing.Size(100, 28);
             this.btnHienThi.TabIndex = 13;
             this.btnHienThi.Text = "Hiển thị";
             this.btnHienThi.Click += new System.EventHandler(this.btnHienThi_Click);
@@ -127,30 +129,30 @@
             this.cmbBoPhan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbBoPhan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbBoPhan.FormattingEnabled = true;
-            this.cmbBoPhan.Location = new System.Drawing.Point(418, 32);
-            this.cmbBoPhan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cmbBoPhan.Location = new System.Drawing.Point(372, 26);
+            this.cmbBoPhan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbBoPhan.Name = "cmbBoPhan";
-            this.cmbBoPhan.Size = new System.Drawing.Size(247, 30);
+            this.cmbBoPhan.Size = new System.Drawing.Size(220, 26);
             this.cmbBoPhan.TabIndex = 12;
             // 
             // dtpThang
             // 
             this.dtpThang.CustomFormat = "MM/yyyy";
             this.dtpThang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpThang.Location = new System.Drawing.Point(964, 32);
-            this.dtpThang.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpThang.Location = new System.Drawing.Point(857, 26);
+            this.dtpThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpThang.Name = "dtpThang";
-            this.dtpThang.Size = new System.Drawing.Size(232, 29);
+            this.dtpThang.Size = new System.Drawing.Size(207, 26);
             this.dtpThang.TabIndex = 11;
             // 
             // lblThang
             // 
             this.lblThang.AutoSize = true;
             this.lblThang.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThang.Location = new System.Drawing.Point(807, 43);
+            this.lblThang.Location = new System.Drawing.Point(717, 34);
             this.lblThang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblThang.Name = "lblThang";
-            this.lblThang.Size = new System.Drawing.Size(60, 22);
+            this.lblThang.Size = new System.Drawing.Size(50, 18);
             this.lblThang.TabIndex = 5;
             this.lblThang.Text = "Tháng";
             // 
@@ -158,10 +160,10 @@
             // 
             this.lblBoPhan.AutoSize = true;
             this.lblBoPhan.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBoPhan.Location = new System.Drawing.Point(306, 43);
+            this.lblBoPhan.Location = new System.Drawing.Point(272, 34);
             this.lblBoPhan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBoPhan.Name = "lblBoPhan";
-            this.lblBoPhan.Size = new System.Drawing.Size(76, 22);
+            this.lblBoPhan.Size = new System.Drawing.Size(62, 18);
             this.lblBoPhan.TabIndex = 2;
             this.lblBoPhan.Text = "Bộ phận";
             // 
@@ -169,11 +171,11 @@
             // 
             this.grdChamCong.DataSource = this.bindingSource1;
             this.grdChamCong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdChamCong.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grdChamCong.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grdChamCong.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdChamCong.Location = new System.Drawing.Point(3, 22);
+            this.grdChamCong.Location = new System.Drawing.Point(3, 17);
             this.grdChamCong.MainView = this.gridView1;
-            this.grdChamCong.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grdChamCong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grdChamCong.Name = "grdChamCong";
             this.grdChamCong.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
@@ -190,10 +192,11 @@
             this.txtNgayChamCong,
             this.txtGhiChu,
             this.repositoryItemPictureEdit1});
-            this.grdChamCong.Size = new System.Drawing.Size(1621, 758);
+            this.grdChamCong.Size = new System.Drawing.Size(1440, 607);
             this.grdChamCong.TabIndex = 49;
             this.grdChamCong.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.grdChamCong.Click += new System.EventHandler(this.grdChamCong_Click);
             // 
             // gridView1
             // 
@@ -209,8 +212,7 @@
             this.gridColumn9,
             this.gridColumn10,
             this.gridColumn11});
-            this.gridView1.DetailHeight = 538;
-            this.gridView1.FixedLineWidth = 3;
+            this.gridView1.DetailHeight = 430;
             this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus;
             this.gridView1.GridControl = this.grdChamCong;
             this.gridView1.Name = "gridView1";
@@ -236,11 +238,11 @@
             this.gridColumn1.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn1.Caption = "Mã nhân viên";
             this.gridColumn1.FieldName = "MaNV";
-            this.gridColumn1.MinWidth = 30;
+            this.gridColumn1.MinWidth = 27;
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 112;
+            this.gridColumn1.Width = 100;
             // 
             // gridColumn2
             // 
@@ -256,11 +258,11 @@
             this.gridColumn2.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn2.Caption = "Tên nhân viên";
             this.gridColumn2.FieldName = "TenNV";
-            this.gridColumn2.MinWidth = 30;
+            this.gridColumn2.MinWidth = 27;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 112;
+            this.gridColumn2.Width = 100;
             // 
             // gridColumn3
             // 
@@ -275,10 +277,11 @@
             this.gridColumn3.Caption = "Ngày công chuẩn";
             this.gridColumn3.ColumnEdit = this.txtNgayCongChuan;
             this.gridColumn3.FieldName = "NgayCongChuan";
-            this.gridColumn3.MinWidth = 30;
+            this.gridColumn3.MinWidth = 27;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.Width = 67;
             // 
             // txtNgayCongChuan
             // 
@@ -300,11 +303,11 @@
             this.gridColumn4.Caption = "Ngày đi làm";
             this.gridColumn4.ColumnEdit = this.txtNgayDiLam;
             this.gridColumn4.FieldName = "NgayDiLam";
-            this.gridColumn4.MinWidth = 30;
+            this.gridColumn4.MinWidth = 27;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
-            this.gridColumn4.Width = 112;
+            this.gridColumn4.Width = 100;
             // 
             // txtNgayDiLam
             // 
@@ -324,11 +327,11 @@
             this.gridColumn5.Caption = "Ngày nghỉ lễ";
             this.gridColumn5.ColumnEdit = this.txtNgayNghiLe;
             this.gridColumn5.FieldName = "NgayNghiLe";
-            this.gridColumn5.MinWidth = 30;
+            this.gridColumn5.MinWidth = 27;
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 4;
-            this.gridColumn5.Width = 112;
+            this.gridColumn5.Width = 100;
             // 
             // txtNgayNghiLe
             // 
@@ -348,11 +351,11 @@
             this.gridColumn6.Caption = "Ngày N.P tính lương";
             this.gridColumn6.ColumnEdit = this.txtNgayNghiPhepTinhLuong;
             this.gridColumn6.FieldName = "NgayNghiPhepTinhLuong";
-            this.gridColumn6.MinWidth = 30;
+            this.gridColumn6.MinWidth = 27;
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 5;
-            this.gridColumn6.Width = 112;
+            this.gridColumn6.Width = 100;
             // 
             // txtNgayNghiPhepTinhLuong
             // 
@@ -374,11 +377,11 @@
             this.gridColumn7.Caption = "Ngày không lương";
             this.gridColumn7.ColumnEdit = this.txtNgayKhongLuong;
             this.gridColumn7.FieldName = "NgayKhongLuong";
-            this.gridColumn7.MinWidth = 30;
+            this.gridColumn7.MinWidth = 27;
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 6;
-            this.gridColumn7.Width = 112;
+            this.gridColumn7.Width = 100;
             // 
             // txtNgayKhongLuong
             // 
@@ -400,11 +403,11 @@
             this.gridColumn8.Caption = "Ngày tính lương";
             this.gridColumn8.ColumnEdit = this.txtNgayTinhLuong;
             this.gridColumn8.FieldName = "NgayTinhLuong";
-            this.gridColumn8.MinWidth = 30;
+            this.gridColumn8.MinWidth = 27;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 7;
-            this.gridColumn8.Width = 112;
+            this.gridColumn8.Width = 100;
             // 
             // txtNgayTinhLuong
             // 
@@ -426,11 +429,11 @@
             this.gridColumn9.Caption = "Ngày chấm công";
             this.gridColumn9.ColumnEdit = this.txtNgayChamCong;
             this.gridColumn9.FieldName = "NgayChamCong";
-            this.gridColumn9.MinWidth = 30;
+            this.gridColumn9.MinWidth = 27;
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
-            this.gridColumn9.Width = 112;
+            this.gridColumn9.Width = 100;
             // 
             // txtNgayChamCong
             // 
@@ -452,11 +455,11 @@
             this.gridColumn10.Caption = "Ghi chú";
             this.gridColumn10.ColumnEdit = this.txtGhiChu;
             this.gridColumn10.FieldName = "GhiChu";
-            this.gridColumn10.MinWidth = 30;
+            this.gridColumn10.MinWidth = 27;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 9;
-            this.gridColumn10.Width = 112;
+            this.gridColumn10.Width = 100;
             // 
             // txtGhiChu
             // 
@@ -479,14 +482,14 @@
             this.gridColumn11.Caption = "Trạng thái";
             this.gridColumn11.FieldName = "TrangThai";
             this.gridColumn11.ImageOptions.Alignment = System.Drawing.StringAlignment.Center;
-            this.gridColumn11.MinWidth = 30;
+            this.gridColumn11.MinWidth = 27;
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.OptionsColumn.AllowFocus = false;
             this.gridColumn11.OptionsColumn.ReadOnly = true;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 10;
-            this.gridColumn11.Width = 112;
+            this.gridColumn11.Width = 100;
             // 
             // repositoryItemTextEdit1
             // 
@@ -524,8 +527,7 @@
             // 
             // repositoryItemGridLookUpEdit1View
             // 
-            this.repositoryItemGridLookUpEdit1View.DetailHeight = 538;
-            this.repositoryItemGridLookUpEdit1View.FixedLineWidth = 3;
+            this.repositoryItemGridLookUpEdit1View.DetailHeight = 430;
             this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
             this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -542,10 +544,10 @@
             this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.Appearance.Options.UseFont = true;
             this.btnLuu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLuu.ImageOptions.Image")));
-            this.btnLuu.Location = new System.Drawing.Point(1135, 27);
-            this.btnLuu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLuu.Location = new System.Drawing.Point(1009, 22);
+            this.btnLuu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(225, 57);
+            this.btnLuu.Size = new System.Drawing.Size(200, 46);
             this.btnLuu.TabIndex = 50;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
@@ -555,10 +557,10 @@
             this.btnNop.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNop.Appearance.Options.UseFont = true;
             this.btnNop.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNop.ImageOptions.Image")));
-            this.btnNop.Location = new System.Drawing.Point(1422, 27);
-            this.btnNop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNop.Location = new System.Drawing.Point(1264, 22);
+            this.btnNop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNop.Name = "btnNop";
-            this.btnNop.Size = new System.Drawing.Size(203, 57);
+            this.btnNop.Size = new System.Drawing.Size(180, 46);
             this.btnNop.TabIndex = 51;
             this.btnNop.Text = "Nộp";
             this.btnNop.Click += new System.EventHandler(this.btnNop_Click);
@@ -569,9 +571,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.grdChamCong);
-            this.groupBox1.Location = new System.Drawing.Point(0, 110);
+            this.groupBox1.Location = new System.Drawing.Point(0, 88);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1627, 783);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(1446, 626);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -581,22 +585,34 @@
             this.groupBox2.Controls.Add(this.btnLuu);
             this.groupBox2.Controls.Add(this.btnNop);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 899);
+            this.groupBox2.Location = new System.Drawing.Point(0, 719);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1639, 100);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(1457, 80);
             this.groupBox2.TabIndex = 52;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
+            // btnHieuSuat
+            // 
+            this.btnHieuSuat.Location = new System.Drawing.Point(1292, 23);
+            this.btnHieuSuat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHieuSuat.Name = "btnHieuSuat";
+            this.btnHieuSuat.Size = new System.Drawing.Size(100, 28);
+            this.btnHieuSuat.TabIndex = 14;
+            this.btnHieuSuat.Text = "Hiệu suất";
+            this.btnHieuSuat.Click += new System.EventHandler(this.btnHieuSuat_Click);
+            // 
             // frmChamCong
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1639, 999);
+            this.ClientSize = new System.Drawing.Size(1457, 799);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grbThongTinChamCong);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmChamCong";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CHAM CONG";
@@ -668,5 +684,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private DevExpress.XtraEditors.SimpleButton btnHieuSuat;
     }
 }

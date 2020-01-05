@@ -17,7 +17,7 @@ namespace HRM_VTHP
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-                Application.Run(new NghiepVu.frmNhanVien()); 
+                Application.Run(new HeThong.frmDangNhap()); 
             
         }
     }

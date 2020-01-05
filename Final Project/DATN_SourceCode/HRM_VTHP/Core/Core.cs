@@ -13,7 +13,7 @@ namespace HRM_VTHP.Core
     public class Core 
     {
         public static string connectionstring = "";
-        public static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-J2U6JA8\TRONGBA;Initial Catalog=HRM_VTHP;Integrated Security=True");
+        public static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-D57NQ5D\BENBACKER;Initial Catalog=HRM_VTHP;Integrated Security=True");
 
         public static bool connectSQL()
         {

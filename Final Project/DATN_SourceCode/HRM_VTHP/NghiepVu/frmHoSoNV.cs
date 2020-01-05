@@ -35,6 +35,7 @@ namespace HRM_VTHP.NghiepVu
             btnXoa.Enabled = false;
             btnHuybo.Enabled = false;
             btnCapNhat.Enabled = false;
+            btnThemHopDong.Enabled = false;
             cmbTenNV.Enabled = false;
             cmbBangCap.Enabled = false;
             cmbDanToc.Enabled = false;
@@ -167,6 +168,7 @@ namespace HRM_VTHP.NghiepVu
         {
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
+            btnThemHopDong.Enabled = true;
             //NhanVienID= int.Parse(gridView1.GetFocusedRowCellValue("NhanVienID").ToString());
             cmbTenNV.SelectedValue = int.Parse(gridView1.GetFocusedRowCellValue("NhanVienID").ToString());
             dtpNgayVaoLam.Value = DateTime.Parse(gridView1.GetFocusedRowCellValue("NgayVaoLam").ToString());
@@ -219,6 +221,14 @@ namespace HRM_VTHP.NghiepVu
             }
             
             
+        }
+
+        private void btnThemHopDong_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmHopDong frm = new frmHopDong();
+            frm.ShowDialog();
+            this.Close();
         }
     }
 }
