@@ -34,7 +34,10 @@ namespace HRM_VTHP.NghiepVu
                             From NhanVien a 
                             left join ChiTietTamUng b on a.NhanVienID = b.NhanVienID and b.ThangTamUng = '" + time + @"'";
                 DataTable data_NhanVienTamUng = Core.Core.GetData(queryTamUng);
-
+                string queryHieuSuat = @"select a.NhanVienID,b.HieuSuat
+                                    From NhanVien a
+                                    Left join DanhGiaHieuSuat b on a.NhanVienID =b.NhanVienID and b.Thang='" + time + @"'";
+                DataTable data_DanhGiaHieuSuat = Core.Core.GetData(queryHieuSuat);
                 String sql = "";
                 int idNhanvien;
                 DataTable data_BanKeLuong = new DataTable();
@@ -57,9 +60,11 @@ namespace HRM_VTHP.NghiepVu
                 for (int i = 0; i < data_NhanVienTamUng.Rows.Count; i++)
                 {
                     idNhanvien = int.Parse(data_NhanVienTamUng.Rows[i][0].ToString());
-                    if (!string.IsNullOrEmpty(data_NhanVienTamUng.Rows[i][1].ToString()))
+                    if (!string.IsNullOrEmpty(data_DanhGiaHieuSuat.Rows[i][1].ToString()))
                     {
-                        sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
+                        if (!string.IsNullOrEmpty(data_NhanVienTamUng.Rows[i][1].ToString()))
+                        {
+                            sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
                                 c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap, g.HieuSuat,
                                 f.TienLuongCung*g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
                                 f.TienLuongCung *g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2) ) - b.TamUng ThucLinh 
@@ -69,17 +74,17 @@ namespace HRM_VTHP.NghiepVu
                             inner join LuongChucDanh f on f.ChucDanhID = d.ChucDanhID
                             inner join DanhGiaHieuSuat g on g.NhanVienID = a.NhanVienID and g.Thang = '" + time + @"'
                             left join ChiTietBanKeLuong c on c.NhanVienID = a.NhanVienID and  c.ThangKeLuong = '" + time + @"'Where a.NhanVienID='" + idNhanvien + @"'";
-                        DataTable dt = new DataTable();
-                        dt = Core.Core.GetData(sql);
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                            data_BanKeLuong.Rows.Add(dr.ItemArray);
-                        }
+                            DataTable dt = new DataTable();
+                            dt = Core.Core.GetData(sql);
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                data_BanKeLuong.Rows.Add(dr.ItemArray);
+                            }
 
-                    }
-                    else
-                    {
-                        sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
+                        }
+                        else
+                        {
+                            sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
                                 c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap, g.HieuSuat,
                                 f.TienLuongCung*g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
                                 f.TienLuongCung *g.HieuSuat * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2) ) ThucLinh 
@@ -89,13 +94,58 @@ namespace HRM_VTHP.NghiepVu
                             inner join LuongChucDanh f on f.ChucDanhID = d.ChucDanhID
                             inner join DanhGiaHieuSuat g on g.NhanVienID = a.NhanVienID and g.Thang = '" + time + @"'
                             left join ChiTietBanKeLuong c on c.NhanVienID = a.NhanVienID and  c.ThangKeLuong = '" + time + @"'Where a.NhanVienID='" + idNhanvien + @"'";
-                        DataTable d2t = new DataTable();
-                        d2t = Core.Core.GetData(sql);
-                        foreach (DataRow dr in d2t.Rows)
+                            DataTable d2t = new DataTable();
+                            d2t = Core.Core.GetData(sql);
+                            foreach (DataRow dr in d2t.Rows)
+                            {
+                                data_BanKeLuong.Rows.Add(dr.ItemArray);
+                            }
+                        }
+
+                    }
+                    if (string.IsNullOrEmpty(data_DanhGiaHieuSuat.Rows[i][1].ToString()))
+                    {
+                        if (!string.IsNullOrEmpty(data_NhanVienTamUng.Rows[i][1].ToString()))
                         {
-                            data_BanKeLuong.Rows.Add(dr.ItemArray);
+                            MessageBox.Show(" Khoong hieu suat , co tam ung");
+                            sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
+                                c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap,
+                                f.TienLuongCung * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
+                                f.TienLuongCung * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2) ) - b.TamUng ThucLinh 
+                            From NhanVien a 
+                            left join ChiTietTamUng b on a.NhanVienID = b.NhanVienID and b.ThangTamUng = '" + time + @"'
+                            inner join NhanVienChucDanh d on a.NhanVienID = d.NhanVienID
+                            inner join LuongChucDanh f on f.ChucDanhID = d.ChucDanhID
+                            left join ChiTietBanKeLuong c on c.NhanVienID = a.NhanVienID and  c.ThangKeLuong = '" + time + @"'Where a.NhanVienID='" + idNhanvien + @"'";
+                            DataTable dt2 = new DataTable();
+                            dt2 = Core.Core.GetData(sql);
+                            foreach (DataRow dr in dt2.Rows)
+                            {
+                                data_BanKeLuong.Rows.Add(dr.ItemArray);
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(" Khoong hieu suat , khong tam ung");
+                            sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
+                                c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap,
+                                f.TienLuongCung * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
+                                f.TienLuongCung * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2) ) ThucLinh 
+                            From NhanVien a 
+                            left join ChiTietTamUng b on a.NhanVienID = b.NhanVienID and b.ThangTamUng = '" + time + @"'
+                            inner join NhanVienChucDanh d on a.NhanVienID = d.NhanVienID
+                            inner join LuongChucDanh f on f.ChucDanhID = d.ChucDanhID                   
+                            left join ChiTietBanKeLuong c on c.NhanVienID = a.NhanVienID and  c.ThangKeLuong = '" + time + @"'Where a.NhanVienID='" + idNhanvien + @"'";
+                            DataTable d2t2 = new DataTable();
+                            d2t2 = Core.Core.GetData(sql);
+                            foreach (DataRow dr in d2t2.Rows)
+                            {
+                                data_BanKeLuong.Rows.Add(dr.ItemArray);
+                            }
                         }
                     }
+
 
                 }
 
@@ -107,7 +157,6 @@ namespace HRM_VTHP.NghiepVu
             {
                 MessageBox.Show("Lỗi không tính được lương!");
             }
-
 
         }
 
