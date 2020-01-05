@@ -23,7 +23,7 @@ namespace HRM_VTHP.HeThong
             {
                 saveFileDialog1.Filter = "Backup File File|*.bak";
                 saveFileDialog1.Title = "Save an Backup File";
-                saveFileDialog1.FileName = "HRM_VTHP" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bak";
+                saveFileDialog1.FileName = "HRM_VNPTHB" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".bak";
                 //saveFileDialog1.ShowDialog();
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
