@@ -107,7 +107,7 @@ namespace HRM_VTHP.NghiepVu
                     {
                         if (!string.IsNullOrEmpty(data_NhanVienTamUng.Rows[i][1].ToString()))
                         {
-                            MessageBox.Show(" Khoong hieu suat , co tam ung");
+                            //MessageBox.Show(" Khoong hieu suat , co tam ung");
                             sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
                                 c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap,
                                 f.TienLuongCung * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
@@ -127,7 +127,7 @@ namespace HRM_VTHP.NghiepVu
                         }
                         else
                         {
-                            MessageBox.Show(" Khoong hieu suat , khong tam ung");
+                            //MessageBox.Show(" Khoong hieu suat , khong tam ung");
                             sql = @"select a.NhanVienID, a.MaNV, a.TenNV, b.TamUng, b.ThangTamUng, c.NgayCongChuan, c.ThangKeLuong,
                                 c.TrangThai, c.ChiTietBanKeLuongID, c.ThueThuNhapCaNhan, c.NgayTinhLuong, f.TienLuongCung, f.PhuCap*f.TienLuongCung/100 as PhuCap,
                                 f.TienLuongCung * (Round((CONVERT(float, c.NgayTinhLuong)/CONVERT(float,c.NgayCongChuan)),2)) TongLuong,
